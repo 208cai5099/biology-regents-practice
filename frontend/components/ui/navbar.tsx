@@ -4,7 +4,7 @@ import Link from "next/link"
 function NavBar() {
 
     return (
-        <div className="fixed top-0 w-full z-50 flex flex-row justify-between p-3 shadow-sm ">
+        <div className="sticky top-0 w-full z-50 flex flex-row justify-between p-3 shadow-sm bg-white">
             <div>
                 <Button className="text-md" variant="link_no_underline">
                     <Link href="/">
