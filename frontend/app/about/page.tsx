@@ -31,7 +31,7 @@ export default function About() {
     }, []);
 
     return (
-        <div className="flex flex-col min-h-screen">
+        <div className="flex flex-col min-h-screen overflow-hidden">
             <NavBar />
 
             <div ref={containerRef} className="flex flex-col min-h-screen m-5 gap-10">

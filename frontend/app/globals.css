@@ -36,3 +36,31 @@
 .slide-in-right.visible {
   animation: slide-in-right 0.6s ease-out forwards;
 }
+
+/* @keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+} */
+
+/* .marquee-animate {
+  display: flex;
+  width: max-content;
+  animation: marquee 5s linear infinite;
+} */
+
+@keyframes marquee {
+  from {
+    left: max(960px, 100%);
+  }
+  to {
+    left: -200px
+  }
+}
+
+.marquee-animate {
+  animation: marquee 30s linear infinite;
+}
