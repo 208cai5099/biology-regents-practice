@@ -1,0 +1,4 @@
+*.pdf
+*.txt
+question_extraction/transcripts/*.json
+.venv
