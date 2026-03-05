@@ -17,7 +17,8 @@ export interface Cluster {
     title: string,
     content: string,
     questions: Question[],
-    phenomenon: string[]
+    phenomenon: string[],
+    standards: string[]
 }
 
 export interface PhenomenaList {

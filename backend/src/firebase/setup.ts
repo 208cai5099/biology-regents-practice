@@ -49,11 +49,11 @@ const readJSONFile = async(filepath: string) => {
 //   const res = await addStandard(standard)
 // }
 
-// const exams_filepath = "./src/firebase/curriculum_materials/exam_materials/all_exam_transcript.json"
-// const clusters: Cluster[] = await readJSONFile(exams_filepath)
-// for (const cluster of clusters) {
-//   const res = await addCluster(cluster)
-// }
+const exams_filepath = "./src/firebase/curriculum_materials/exam_materials/all_exam_transcript.json"
+const clusters: Cluster[] = await readJSONFile(exams_filepath)
+for (const cluster of clusters) {
+  const res = await addCluster(cluster)
+}
 
 // const phenomenaFilepath = "./src/firebase/curriculum_materials/phenomena_examples/phenomena_list.json"
 // const phenomenaList: PhenomenaList = await readJSONFile(phenomenaFilepath)
