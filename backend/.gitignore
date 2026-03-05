@@ -1,5 +1,7 @@
 *.pdf
-/curriculum_materials/exam_materials/*.json
-/curriculum_materials/exam_materials/*.txt
+/src/firebase/curriculum_materials/exam_materials/*.json
+/src/firebase/curriculum_materials/exam_materials/*.txt
 .venv
 node_modules
+firebase_key.json
+.env
