@@ -1,4 +1,5 @@
 *.pdf
-*.txt
-question_extraction/transcripts/*.json
+/curriculum_materials/exam_materials/*.json
+/curriculum_materials/exam_materials/*.txt
 .venv
+node_modules

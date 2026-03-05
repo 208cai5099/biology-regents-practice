@@ -1,0 +1,7 @@
+In New York State, the Education Department implements a high school biology exam called the Life Science: Biology Regents exam. The exam consists of sections called clusters. Each cluster is made up of reading passages and charts/tables/graphs and images. The students have to interpret the given materials and connect the information presented across the different medium to answer multiple-choice and constructed response questions. It is not a memorization test. It's more about applying biology knowledge to the readings. 
+
+Each cluster is focused on a specific phenomenon. I believe the test makers are trying to resemble the phenomenon-based learning pedagogy from the Next Generation Science Standards. The idea behind phenomenon-based learning is to present a phenomenon and have students explore it. In the process of exploring, they uncover biology concepts and pick up new skills. It's an inquiry-based learning model. I believe the test makers wanted to make every cluster focus on a specific phenomenon to resemble phenomena-based learning.
+
+I have gathered a list of phenomena that have already been used in official exam materials released to the public. Based on the list in the JSON file, can you generate 50 other phenomena?
+
+Your output should be an array of phenomena under a field called "new_phenomena". Simply add this to the JSON object.
