@@ -1,21 +1,9 @@
 import Anthropic from "@anthropic-ai/sdk"
-import dotenv from "dotenv"
-import { z } from "zod"
+import { z, ZodType } from "zod"
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod"
 import fs from "fs/promises"
-import admin from "firebase-admin"
-import { getFirestore } from 'firebase-admin/firestore'
-import { Cluster, PhenomenaList, ScienceStandard } from "./types.js"
-
-dotenv.config()
-
-const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG as string)
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-})
-
-const db = getFirestore()
+import { Cluster, ScienceStandard } from "./types.js"
+import { db } from "../firebase/setup.js"
 
 const QuestionSchema = z.object({
   type: z.enum(["multiple choice", "constructed response"]),
@@ -46,19 +34,10 @@ const client = new Anthropic({
 
 const readPrompt = async(type: string) => {
 
-  try {
+  const allPrompts = await fs.readFile("./src/question-generation/prompts.json", "utf-8")
+  const allPromptsJSON: Record<string, string[]> = JSON.parse(allPrompts)
+  return allPromptsJSON[type].join("")
 
-    const allPrompts = await fs.readFile("./src/question-generation/prompts.json", "utf-8")
-    const allPromptsJSON: Record<string, string[]> = JSON.parse(allPrompts)
-    return allPromptsJSON[type].join("")
-
-  } catch (error) {
-
-    console.log(error)
-  
-  }
-
-  return ""
 }
 
 class ClusterGenerator {
@@ -67,14 +46,16 @@ class ClusterGenerator {
   systemPrompt: string
   model: string
   maxTokens: number
-  outputConfig: any
+  outputConfig: ZodType
+  clusterExampleCount: number
 
-  constructor(client: Anthropic, model: string = "claude-haiku-4-5", systemPrompt: string, maxTokens: number = 8192, outputConfig: any) {
+  constructor(client: Anthropic, model: string = "claude-haiku-4-5", systemPrompt: string, maxTokens: number = 8192, outputConfig: ZodType, clusterExampleCount: number = 2) {
     this.client = client
     this.systemPrompt = systemPrompt
     this.model = model
     this.maxTokens = maxTokens
     this.outputConfig = outputConfig
+    this.clusterExampleCount = clusterExampleCount
   }
 
   fetchPhenomenaExamples = async() => {
@@ -111,10 +92,9 @@ class ClusterGenerator {
     return output
 
   }
-
+  
   fetchClusterExamples = async(targetStandards: string[]) => {
 
-    const exampleCount = 2
     const countRecord: [string, number][] = []
     const snapshot = await db.collection("official_clusters").select("standards").get()
     snapshot.forEach(doc => {
@@ -130,7 +110,7 @@ class ClusterGenerator {
     })
 
     countRecord.sort((record1, record2) => record2[1] - record1[1])
-    const topMatches = countRecord.slice(0, exampleCount).map((record) => record[0])
+    const topMatches = countRecord.slice(0, this.clusterExampleCount).map((record) => record[0])
     const matchRefs = topMatches.map(id => db.collection("official_clusters").doc(id))
     const matchSnapshot = await db.getAll(...matchRefs)
     const targetClusters: Cluster[] = []
@@ -178,14 +158,12 @@ class ClusterGenerator {
       })
 
       if (response.stop_reason === "max_tokens") {
-        console.error("Response maxed out on token size limit - need to increase maxTokens")
-        return "Error: maxTokens is too low"
+        throw new Error("Error: maxTokens is too low")
       }
 
       const textBlock = response.content.find(block => block.type === "text")
-      if (!textBlock || textBlock.type !== "text") {
-        console.error("No text block in response")
-        return "Error: no text blocks in response"
+      if (!textBlock) {
+        throw new Error("Error: no text blocks in response")
       }
 
       return this.outputConfig.parse(JSON.parse(textBlock.text))
@@ -196,17 +174,12 @@ class ClusterGenerator {
         console.error("Status:", error.status)
         console.error("Message:", error.message)
         console.error("Error name:", error.name)
-        return `Error: ${error.name}`
       } else {
         console.error(error)
-        return "Error"
       }
+
+      throw error
     }
   }
 
 }
-
-// const systemPrompt = await readPrompt("cluster_system_prompt")
-// const generator = new ClusterGenerator(client, "claude-haiku-4-5", systemPrompt, 8192, ClusterSchema)
-// const userPromptTemplate = await readPrompt("cluster_user_prompt_template")
-// const output = await generator.generate(userPromptTemplate, "how antibiotic overuse in livestock contributes to resistant bacterial strains", ["HS-LS4-2", "HS-LS4-3", "HS-LS4-4"])
