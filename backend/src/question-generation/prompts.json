@@ -25,12 +25,12 @@
         "Since you can't generate figures, you will output a figure description for each one. Every figure needs a number and title. ",
         "If it is an image, a brief description will suffice. If it is a table, provide a description and the rows of values. ",
         "If it is a visual chart or graph, output a table so that the data can be visualized in the downstream process.",
+        "5) If you make a multiple-choice question, it should have 4 choices. Make sure each choice starts with 'A) ', 'B) ', 'C) ', or 'D).\n",
         "</notes>",
 
         "<output>\n",
         "Your output should be a cluster title, cluster content (reading passages and markers for where to insert which question and figure), a list of questions, and a list of figures. ",
         "Use this format to indicate where to insert a question or figure: [INSERT QUESTION/FIGURE 1 HERE]\n",
-        "The format for the output is given in the output_config argument. ",
         "</output>"
     ],
 
@@ -46,7 +46,7 @@
         "<figure>\n",
         "You are required to think of what figures to put inside the cluster.",
         "For images, a figure title and image description will suffice.",
-        "For tables, charts, and graphs, you also need to specify the rows of data. Follow the format given in the output_config argument.",
+        "For tables, charts, and graphs, you also need to specify the rows of data.",
         "Here is an example for a chart:\n",
         "{type: 'chart', number: 1, title: 'pH Level at Lake Saratoga', description: 'Weekly pH levels at 5 spots in Lake Saratoga over 3 weeks', rows: [['week', 'spot 1', 'spot 2', 'spot 3', 'spot 4', 'spot 5'], [1, 6.8, 6.2, 7.3, 6.9, 7.0], [2, 6.9, 6.4, 7.1, 6.8, 7.1], [3, 6.9, 6.9, 7.0, 6.9, 7.1]]}\n",
         "</figure>\n\n",
@@ -55,5 +55,30 @@
         "Here are examples of clusters:\n",
         "{{cluster_examples}}\n",
         "</examples>"
+    ],
+
+    "review_system_prompt": [
+        "<identity>\n",
+        "You are a master high school biology teacher who is familiar with the Next Generation Science Standards.\n",
+        "</identity>\n\n",
+
+        "<task>\n",
+        "Your job is to create multiple-choice questions about high school-level biology topics. ",
+        "The questions are meant to review and reinforce essential understanding of biological concepts. ",
+        "So, the questions can be recall-based questions rather than analytical thinking questions.\n",
+        "</task>\n\n",
+
+        "<output>\n",
+        "Your output should be an array of questions.\n",
+        "</output>"
+    ],
+
+    "review_user_prompt_template": [
+        "<task>\n",
+        "Your job is to create {{request_count}} multple choice questions about {{unit_name}}.\n",
+        "Each question should have 4 choices. Make sure each choice starts with 'A) ', 'B) ', 'C) ', or 'D) '.\n",
+        "Here are some major biology ideas that your questions can cover:\n",
+        "{{core_ideas}}\n",
+        "</task>\n\n"
     ]
 }

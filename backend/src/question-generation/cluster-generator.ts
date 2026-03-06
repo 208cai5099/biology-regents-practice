@@ -9,7 +9,7 @@ const QuestionSchema = z.object({
   type: z.enum(["multiple choice", "constructed response"]),
   number: z.number(),
   question: z.string(),
-  availableChoices: z.array(z.string()).optional(),
+  availableChoices: z.array(z.string().regex(/^[ABCD]\) /)).length(4).optional(),
   answer: z.string()
 })
 
@@ -128,21 +128,21 @@ class ClusterGenerator {
 
   generate = async(userPromptTemplate: string, phenomenon: string, targetStandards: string[]) => {
 
-    const clusterExamples = await this.fetchClusterExamples(targetStandards)
-    const standardsDescriptions = await this.fetchStandards(targetStandards)
-
-    const variablePlaceholders = {
-      phenomenon: phenomenon,
-      standards_list: targetStandards.join(", "),
-      standards_descriptions: standardsDescriptions,
-      cluster_examples: clusterExamples
-    }
-
-    const userPrompt = Object.entries(variablePlaceholders).reduce((prompt, [field, value]) => {
-      return prompt.replaceAll(`{{${field}}}`, value)
-    }, userPromptTemplate)
-
     try {
+
+      const clusterExamples = await this.fetchClusterExamples(targetStandards)
+      const standardsDescriptions = await this.fetchStandards(targetStandards)
+
+      const variablePlaceholders = {
+        phenomenon: phenomenon,
+        standards_list: targetStandards.join(", "),
+        standards_descriptions: standardsDescriptions,
+        cluster_examples: clusterExamples
+      }
+
+      const userPrompt = Object.entries(variablePlaceholders).reduce((prompt, [field, value]) => {
+        return prompt.replaceAll(`{{${field}}}`, value)
+      }, userPromptTemplate)
 
       const response = await this.client.messages.create({
         model: this.model,

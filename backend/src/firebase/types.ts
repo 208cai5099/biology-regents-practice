@@ -5,6 +5,11 @@ export interface ScienceStandard {
     clarification_statement: string
 }
 
+export interface Unit {
+    unit: string,
+    core_ideas: string[]
+}
+
 export interface Question {
     number: number,
     question: string,

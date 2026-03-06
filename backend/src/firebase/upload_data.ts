@@ -1,10 +1,10 @@
 import fs from "fs/promises";
-import { Cluster, PhenomenaList, ScienceStandard } from "./types.js";
+import { Cluster, PhenomenaList, ScienceStandard, Unit } from "./types.js";
 import { db } from "./setup.js";
 
 const addStandard = async(standard: ScienceStandard) => {
 
-  const standardCode = standard.standard_code
+  const standardCode = standard["standard_code"]
   const docRef = db.collection("standards").doc(standardCode)
   return await docRef.set(standard)
 
@@ -15,6 +15,14 @@ const addCluster = async(cluster: Cluster) => {
   const clusterID = `${cluster.source_name}_${cluster.title.toLowerCase().replaceAll(" ", "_")}`
   const docRef = db.collection("official_clusters").doc(clusterID)
   return await docRef.set(cluster)
+
+}
+
+const addUnit = async(unit: Unit) => {
+  
+  const unitName = unit["unit"]
+  const docRef = db.collection("biology_units").doc(unitName)
+  return await docRef.set(unit)
 
 }
 
@@ -31,7 +39,7 @@ const readJSONFile = async(filepath: string) => {
 
 }
 
-// const standards_filepath = "./src/firebase/curriculum_materials/standards/relevant_standards.json"
+// const standards_filepath = "./src/firebase/curriculum_materials/standards/performance_expectations.json"
 // const standards: ScienceStandard[] = await readJSONFile(standards_filepath)
 // for (const standard of standards) {
 //   const res = await addStandard(standard)
@@ -47,3 +55,9 @@ const readJSONFile = async(filepath: string) => {
 // const phenomenaList: PhenomenaList = await readJSONFile(phenomenaFilepath)
 // const usedRef = db.collection("phenomena").doc("phenomena")
 // await usedRef.set(phenomenaList)
+
+// const coreIdeasFilepath = "./src/firebase/curriculum_materials/standards/core_ideas.json"
+// const unitList: Unit[] = await readJSONFile(coreIdeasFilepath)
+// for (const unit of unitList) {
+//   const res = await addUnit(unit)
+// }
