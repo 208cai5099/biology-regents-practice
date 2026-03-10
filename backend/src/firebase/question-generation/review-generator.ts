@@ -1,41 +1,27 @@
 import Anthropic from "@anthropic-ai/sdk"
 import { z, ZodType } from "zod"
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod"
-import fs from "fs/promises"
-import { db } from "../firebase/setup.js"
+import { db } from "../setup.js"
+import { UnitNames } from "../types.js"
 
-const MCQuestionSchema = z.object({
+export const MCQuestionSchema = z.object({
     unitName: z.enum(["Organism Organization and Homeostasis", "Genetics", "Biochemistry", "Ecology and Human Impacts on Ecosystems", "The Carbon Cycle", "Reproduction", "Evolution"]),
     question: z.string(),
     availableChoices: z.array(z.string().regex(/^[ABCD]\) /)).length(4),
-    correctAnswer: z.string()
+    correctAnswer: z.string().regex(/^[ABCD]\) /)
 })
 
-const MCQuestionListSchema = z.object({
+export const MCQuestionListSchema = z.object({
     questionList: z.array(MCQuestionSchema)
 })
 
-const readPrompt = async(type: string) => {
+export class ReviewQuestionGenerator {
 
-  const allPrompts = await fs.readFile("./src/question-generation/prompts.json", "utf-8")
-  const allPromptsJSON: Record<string, string[]> = JSON.parse(allPrompts)
-  return allPromptsJSON[type].join("")
-
-}
-
-const client = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-});
-
-type UnitNames = "Organism Organization and Homeostasis" | "Genetics" | "Biochemistry" | "Ecology and Human Impacts on Ecosystems" | "The Carbon Cycle" | "Reproduction" | "Evolution"
-
-class ReviewQuestionGenerator {
-
-    client: Anthropic
-    model: string
-    systemPrompt: string
-    maxTokens: number
-    outputConfig: ZodType
+    private client: Anthropic
+    private model: string
+    private systemPrompt: string
+    private maxTokens: number
+    private outputConfig: ZodType
 
     constructor(client: Anthropic, model: string, systemPrompt: string, maxTokens: number = 1000, outputConfig: ZodType) {
         this.client = client
@@ -45,7 +31,7 @@ class ReviewQuestionGenerator {
         this.outputConfig = outputConfig
     }
 
-    fetchUnitCoreIdeas = async(unitName: UnitNames) => {
+    private fetchUnitCoreIdeas = async(unitName: UnitNames) => {
 
         try {
             const unitDoc = await db.collection("biology_units").doc(unitName).get()
@@ -59,6 +45,7 @@ class ReviewQuestionGenerator {
         }
 
     }
+    
     generate = async(userPromptTemplate: string, unitName: UnitNames, requestCount: number) => {
         
         try {
@@ -98,7 +85,7 @@ class ReviewQuestionGenerator {
                 throw new Error("Error: no text blocks in response")
             }
 
-            return this.outputConfig.parse(JSON.parse(textBlock.text))
+            return this.outputConfig.parse(JSON.parse(textBlock.text)) as z.infer<typeof MCQuestionListSchema>
 
         } catch (error) {
             console.error(error)

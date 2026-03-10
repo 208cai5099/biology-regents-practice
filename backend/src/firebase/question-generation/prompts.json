@@ -29,12 +29,13 @@
         "</notes>",
 
         "<output>\n",
-        "Your output should be a cluster title, cluster content (reading passages and markers for where to insert which question and figure), a list of questions, and a list of figures. ",
-        "Use this format to indicate where to insert a question or figure: [INSERT QUESTION/FIGURE 1 HERE]\n",
+        "Your output should be a cluster title, cluster content (reading passages and markers for where to insert which figure), an array of questions, and an array of figures. ",
+        "The questions should be in the cluster content and be available as an array. ",
+        "Use this format to indicate where to insert a figure: [INSERT FIGURE 1 HERE]\n",
         "</output>"
     ],
 
-    "cluster_user_prompt_template": [
+    "cluster_user_prompt": [
         "<task>\n",
         "Your job is to create a cluster about the following phenomenon and standards:\n",
         "Phenomenon: {{phenomenon}}\n",
@@ -73,7 +74,7 @@
         "</output>"
     ],
 
-    "review_user_prompt_template": [
+    "review_user_prompt": [
         "<task>\n",
         "Your job is to create {{request_count}} multple choice questions about {{unit_name}}.\n",
         "Each question should have 4 choices. Make sure each choice starts with 'A) ', 'B) ', 'C) ', or 'D) '.\n",

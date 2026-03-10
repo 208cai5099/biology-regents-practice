@@ -1,9 +1,8 @@
 import Anthropic from "@anthropic-ai/sdk"
 import { z, ZodType } from "zod"
 import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod"
-import fs from "fs/promises"
-import { Cluster, ScienceStandard } from "./types.js"
-import { db } from "../firebase/setup.js"
+import { Cluster, ScienceStandard } from "../types.js"
+import { db } from "../setup.js"
 
 const QuestionSchema = z.object({
   type: z.enum(["multiple choice", "constructed response"]),
@@ -21,33 +20,21 @@ const FigureSchema = z.object({
   rows: z.array(z.array(z.union([z.string(), z.number()]))).optional()
 })
 
-const ClusterSchema = z.object({
+export const ClusterSchema = z.object({
   title: z.string(),
   content: z.string(),
   questions: z.array(QuestionSchema),
   figures: z.array(FigureSchema)
 });
 
-const client = new Anthropic({
-    apiKey: process.env.ANTHROPIC_API_KEY
-});
+export class ClusterGenerator {
 
-const readPrompt = async(type: string) => {
-
-  const allPrompts = await fs.readFile("./src/question-generation/prompts.json", "utf-8")
-  const allPromptsJSON: Record<string, string[]> = JSON.parse(allPrompts)
-  return allPromptsJSON[type].join("")
-
-}
-
-class ClusterGenerator {
-
-  client: Anthropic
-  systemPrompt: string
-  model: string
-  maxTokens: number
-  outputConfig: ZodType
-  clusterExampleCount: number
+  private client: Anthropic
+  private systemPrompt: string
+  private model: string
+  private maxTokens: number
+  private outputConfig: ZodType
+  private clusterExampleCount: number
 
   constructor(client: Anthropic, model: string = "claude-haiku-4-5", systemPrompt: string, maxTokens: number = 8192, outputConfig: ZodType, clusterExampleCount: number = 2) {
     this.client = client
@@ -58,20 +45,7 @@ class ClusterGenerator {
     this.clusterExampleCount = clusterExampleCount
   }
 
-  fetchPhenomenaExamples = async() => {
-    const phenomenaRef = db.collection("phenomena")
-    const snapshot = await phenomenaRef.get()
-    const phenomenaExamples: string[] = []
-    
-    snapshot.forEach(doc => {
-      const examples = doc.data()
-      phenomenaExamples.push(...examples["new_phenomena"])
-    })
-
-    return phenomenaExamples
-  }
-
-  fetchStandards = async(targetStandards: string[]) => {
+  private fetchStandards = async(targetStandards: string[]) => {
 
     const standardsRef = targetStandards.map(standardCode => db.collection("standards").doc(standardCode))
     const snapshot = await db.getAll(...standardsRef)
@@ -93,7 +67,7 @@ class ClusterGenerator {
 
   }
   
-  fetchClusterExamples = async(targetStandards: string[]) => {
+  private fetchClusterExamples = async(targetStandards: string[]) => {
 
     const countRecord: [string, number][] = []
     const snapshot = await db.collection("official_clusters").select("standards").get()
@@ -110,8 +84,8 @@ class ClusterGenerator {
     })
 
     countRecord.sort((record1, record2) => record2[1] - record1[1])
-    const topMatches = countRecord.slice(0, this.clusterExampleCount).map((record) => record[0])
-    const matchRefs = topMatches.map(id => db.collection("official_clusters").doc(id))
+    const topMatchIDs = countRecord.slice(0, this.clusterExampleCount).map((record) => record[0])
+    const matchRefs = topMatchIDs.map(id => db.collection("official_clusters").doc(id))
     const matchSnapshot = await db.getAll(...matchRefs)
     const targetClusters: Cluster[] = []
     matchSnapshot.forEach(doc => targetClusters.push(doc.data() as Cluster))
@@ -166,7 +140,7 @@ class ClusterGenerator {
         throw new Error("Error: no text blocks in response")
       }
 
-      return this.outputConfig.parse(JSON.parse(textBlock.text))
+      return this.outputConfig.parse(JSON.parse(textBlock.text)) as z.infer<typeof ClusterSchema>
 
     } catch (error) {
 

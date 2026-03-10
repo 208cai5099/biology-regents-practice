@@ -1,6 +1,8 @@
 import fs from "fs/promises";
 import { Cluster, PhenomenaList, ScienceStandard, Unit } from "./types.js";
 import { db } from "./setup.js";
+import { MCQuestionSchema } from "./question-generation/review-generator.js";
+import { z } from "zod"
 
 const addStandard = async(standard: ScienceStandard) => {
 
@@ -34,10 +36,32 @@ const readJSONFile = async(filepath: string) => {
     return JSON.parse(docText)
 
   } catch (error) {
-    return null 
+    throw error
   }
 
 }
+
+const addReviewQuestions = async(questionsList: z.infer<typeof MCQuestionSchema>[]) => {
+
+  try {
+
+    const batch = db.batch()
+    for (const question of questionsList) {
+      const unitQuestionsCollection = db.collection("practice_questions").doc("review_questions").collection(question["unitName"])
+      const docRef = unitQuestionsCollection.doc()
+      batch.set(docRef, question)
+    }
+
+    await batch.commit()
+
+  } catch (error) {
+    throw error
+  }
+
+}
+
+// const reviewQuestions = await readJSONFile("./src/firebase/question-generation/review-questions.json")
+// await addReviewQuestions(reviewQuestions)
 
 // const standards_filepath = "./src/firebase/curriculum_materials/standards/performance_expectations.json"
 // const standards: ScienceStandard[] = await readJSONFile(standards_filepath)

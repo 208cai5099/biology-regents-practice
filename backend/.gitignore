@@ -5,3 +5,4 @@
 node_modules
 firebase_key.json
 .env
+/src/firebase/question-generation/review-questions.json

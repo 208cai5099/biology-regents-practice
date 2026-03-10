@@ -30,3 +30,5 @@ export interface PhenomenaList {
     already_used: string[],
     new_phenomena: string[]
 }
+
+export type UnitNames = "Organism Organization and Homeostasis" | "Genetics" | "Biochemistry" | "Ecology and Human Impacts on Ecosystems" | "The Carbon Cycle" | "Reproduction" | "Evolution"
