@@ -6,3 +6,6 @@ node_modules
 firebase_key.json
 .env
 /src/firebase/question-generation/review-questions.json
+/src/firebase/question-generation/cluster-questions.json
+/src/firebase/question-generation/main.ts
+/src/firebase/question-generation/write-doc.ts

@@ -59,29 +59,3 @@ const addReviewQuestions = async(questionsList: z.infer<typeof MCQuestionSchema>
   }
 
 }
-
-// const reviewQuestions = await readJSONFile("./src/firebase/question-generation/review-questions.json")
-// await addReviewQuestions(reviewQuestions)
-
-// const standards_filepath = "./src/firebase/curriculum_materials/standards/performance_expectations.json"
-// const standards: ScienceStandard[] = await readJSONFile(standards_filepath)
-// for (const standard of standards) {
-//   const res = await addStandard(standard)
-// }
-
-// const exams_filepath = "./src/firebase/curriculum_materials/exam_materials/all_exam_transcript.json"
-// const clusters: Cluster[] = await readJSONFile(exams_filepath)
-// for (const cluster of clusters) {
-//   const res = await addCluster(cluster)
-// }
-
-// const phenomenaFilepath = "./src/firebase/curriculum_materials/phenomena_examples/phenomena_list.json"
-// const phenomenaList: PhenomenaList = await readJSONFile(phenomenaFilepath)
-// const usedRef = db.collection("phenomena").doc("phenomena")
-// await usedRef.set(phenomenaList)
-
-// const coreIdeasFilepath = "./src/firebase/curriculum_materials/standards/core_ideas.json"
-// const unitList: Unit[] = await readJSONFile(coreIdeasFilepath)
-// for (const unit of unitList) {
-//   const res = await addUnit(unit)
-// }

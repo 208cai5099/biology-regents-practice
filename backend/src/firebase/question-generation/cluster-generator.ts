@@ -4,28 +4,46 @@ import { zodOutputFormat } from "@anthropic-ai/sdk/helpers/zod"
 import { Cluster, ScienceStandard } from "../types.js"
 import { db } from "../setup.js"
 
-const QuestionSchema = z.object({
-  type: z.enum(["multiple choice", "constructed response"]),
-  number: z.number(),
-  question: z.string(),
-  availableChoices: z.array(z.string().regex(/^[ABCD]\) /)).length(4).optional(),
-  answer: z.string()
+export const TitleSchema = z.object({
+  clusterTitle: z.string()
 })
 
-const FigureSchema = z.object({
-  type: z.enum(["image", "table", "chart", "graph"]),
-  number: z.number(),
-  title: z.string(),
-  description: z.string(),
-  rows: z.array(z.array(z.union([z.string(), z.number()]))).optional()
+export const TextSchema = z.object({
+  text: z.string()
 })
 
-export const ClusterSchema = z.object({
-  title: z.string(),
-  content: z.string(),
-  questions: z.array(QuestionSchema),
-  figures: z.array(FigureSchema)
-});
+export const MultipleChoiceQuestionSchema = z.object({
+  questionType: z.literal("multiple-choice"),
+  questionNumber: z.number(),
+  questionWording: z.string(),
+  wrongChoices: z.array(z.string()).length(3),
+  correctAnswer: z.string()
+})
+
+export const ConstructedResponseQuestionSchema = z.object({
+  questionType: z.literal("constructed-response"),
+  questionNumber: z.number(),
+  questionWording: z.string(),
+  correctAnswer: z.string()
+})
+
+export const FigureSchema = z.object({
+  figureType: z.enum(["image", "table", "chart", "graph"]),
+  figureNumber: z.number(),
+  figureTitle: z.string(),
+  figureDescription: z.string(),
+  figureRows: z.array(z.array(z.string())).optional()
+})
+
+export const ClusterSectionSchema = z.object({
+  sectionNumber: z.number().min(1),
+  sectionType: z.enum(["title", "text", "multiple-choice", "constructed-response", "figure"]),
+  sectionObject: z.union([TitleSchema, TextSchema, MultipleChoiceQuestionSchema, ConstructedResponseQuestionSchema, FigureSchema])
+})
+
+export const EntireClusterSchema = z.object({
+  clusterSectionArray: z.array(ClusterSectionSchema)
+})
 
 export class ClusterGenerator {
 
@@ -140,7 +158,7 @@ export class ClusterGenerator {
         throw new Error("Error: no text blocks in response")
       }
 
-      return this.outputConfig.parse(JSON.parse(textBlock.text)) as z.infer<typeof ClusterSchema>
+      return this.outputConfig.parse(JSON.parse(textBlock.text)) as z.infer<typeof EntireClusterSchema>
 
     } catch (error) {
 

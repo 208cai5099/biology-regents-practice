@@ -7,8 +7,8 @@ import { UnitNames } from "../types.js"
 export const MCQuestionSchema = z.object({
     unitName: z.enum(["Organism Organization and Homeostasis", "Genetics", "Biochemistry", "Ecology and Human Impacts on Ecosystems", "The Carbon Cycle", "Reproduction", "Evolution"]),
     question: z.string(),
-    availableChoices: z.array(z.string().regex(/^[ABCD]\) /)).length(4),
-    correctAnswer: z.string().regex(/^[ABCD]\) /)
+    wrongChoices: z.array(z.string()).length(3),
+    correctAnswer: z.string()
 })
 
 export const MCQuestionListSchema = z.object({
@@ -46,16 +46,16 @@ export class ReviewQuestionGenerator {
 
     }
     
-    generate = async(userPromptTemplate: string, unitName: UnitNames, requestCount: number) => {
+    generate = async(userPromptTemplate: string, unitName: UnitNames, givenTopics: string[], requestCount: number) => {
         
         try {
 
-            const coreIdeas = await this.fetchUnitCoreIdeas(unitName)
+            const topicsList = givenTopics.length ? givenTopics : await this.fetchUnitCoreIdeas(unitName)
             const variablePlaceholders = {
                 unit_name: unitName,
                 request_count: String(requestCount),
-                core_ideas: coreIdeas.reduce((combined, idea) => {
-                    return combined += `--${idea}\n`
+                topics_list: topicsList.reduce((combined, topic) => {
+                    return combined += `--${topic}\n`
                 }, "")
             }
 
