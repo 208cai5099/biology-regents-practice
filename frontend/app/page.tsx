@@ -3,6 +3,18 @@
 import { Footer } from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
 import { useEffect, useRef } from "react";
+import MultipleChoiceCard from "@/components/ui/multiple-choice";
+
+const sampleQuestion = {
+  question: "Why is the three-dimensional shape of an enzyme so important to its function?",
+  correctAnswer: 0,
+  allChoices: [
+    "The shape of the active site must match the specific substrate for the enzyme to catalyze the reaction",
+    "It allows the enzyme to dissolve more easily in the cytoplasm",
+    "It determines the color of the enzyme so cells can identify it",
+    "It helps the enzyme travel faster through the bloodstream"
+  ]
+}
 
 export default function Home() {
 
@@ -46,7 +58,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="flex flex-col min-h-screen overflow-hidden">
+    <div className="flex flex-col min-h-screen overflow-hidden bg-wallpaper">
       <NavBar />
       <div className="flex flex-col flex-1 items-center mt-5 gap-5">
 
@@ -72,20 +84,42 @@ export default function Home() {
             )}
         </div>
 
+        <div className="text-sm text-gray-500 self-end mr-5">
+          <p>
+            Images courtesy of <a className="underline" href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a> · <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_black" rel="noopener noreferrer">CC BY-SA 4.0</a>
+          </p>
+
+        </div>
+
         <div className="flex flex-col self-stretch mx-5" ref={containerRef}>
-          <div className="slide-in-left flex flex-col self-start rounded-md gap-1 w-full max-w-7/8 lg:max-w-1/2">
-              <h1 className="text-2xl px-1">Essential Biology Knowledge</h1>
-              <p className="text-lg px-1">
-                  Need to review major biology concepts? You've come to the right place.
-              </p>
+
+          <div className="flex flex-col md:flex-row justify-between">
+            <div className="slide-in-left flex flex-col justify-center items-center rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
+                <h1 className="text-2xl px-1">Essential Biology Knowledge</h1>
+                <p className="text-lg text-center px-1">
+                    Need to review major biology concepts? This site has review questions for all high school biology topics.
+                </p>
+            </div>
+
+            <div className="slide-in-right flex flex-col justify-center items-center  rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
+              <MultipleChoiceCard {...sampleQuestion}/>
+            </div>
           </div>
 
-          <div className="slide-in-right flex flex-col self-end items-end rounded-md gap-1 w-full max-w-7/8 lg:max-w-1/2">
-              <h1 className="text-2xl px-1">Cluster Style Questions</h1>
-              <p className="text-lg px-1">
-                  Want practice questions that resemble those from the actual Regents exam? We got those here.
-              </p>
+          <div className="flex flex-col md:flex-row justify-between">
+            <div className="slide-in-left flex flex-col justify-center items-center rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
+              <p>Insert sample question</p>
+            </div>
+
+            <div className="slide-in-right flex flex-col justify-center items-center  rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
+                <h1 className="text-2xl px-1">Cluster Style Questions</h1>
+                <p className="text-lg px-1">
+                    Want practice questions that resemble those from the actual Regents exam? We got those here.
+                </p>
+            </div>
           </div>
+
+
         </div>
 
 

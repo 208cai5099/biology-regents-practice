@@ -2,6 +2,13 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+ @theme {                                                                                                                                    
+    --color-wallpaper: #FFF;                                                                                                                 
+    --color-navbar: #000;
+    --color-card: #FFF; 
+    --color-card-button: #609C63;                                                                                                             
+  }    
+
 @keyframes slide-in-left {
   from {
     opacity: 0;
@@ -36,21 +43,6 @@
 .slide-in-right.visible {
   animation: slide-in-right 0.6s ease-out forwards;
 }
-
-/* @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-25%);
-  }
-} */
-
-/* .marquee-animate {
-  display: flex;
-  width: max-content;
-  animation: marquee 5s linear infinite;
-} */
 
 @keyframes marquee {
   from {

@@ -48,10 +48,10 @@ export default function About() {
                 <div className="slide-in-right flex flex-col self-end items-end border border-gray-50 shadow-xs rounded-md gap-1 w-full max-w-7/8">
                     <h1 className="text-2xl px-1">Who Made this Site?</h1>
                     <p className="text-lg px-1">
-                        BuddinBio is designed and created by Zhuo Biao Cai, a biology teacher turned software engineer from NYC. In 2019, Zhuo graduated with a BA in Biology and an initial grades 7-12
+                        BuddinBio is designed and created by Zhuo Biao Cai, a former biology teacher from NYC. In 2019, Zhuo graduated with a BA in Biology and an initial grades 7-12
                         biology teaching certification from Vassar College. He went on to teach math and biology in NYC before discovering an interest in computer programming. He eventually pursued a
                         Master's study in computer technology at the University of Pennsylvania. Passionate about the intersection of educational technology, Zhuo designed this site as a test preparation
-                        tool for the Biology Regents exam.
+                        tool for the NYS Biology Regents exam.
                     </p>
                 </div>
 
