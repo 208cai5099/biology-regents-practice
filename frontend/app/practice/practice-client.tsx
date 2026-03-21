@@ -1,13 +1,13 @@
 'use client'
 
-import QuestionMenu from "@/components/question-menu/question-menu"
+import QuestionMenu from "@/app/practice/question-menu"
 import { useState, useEffect } from "react"
 import { firebaseApp } from "@/lib/utils"
 import { getFirestore, doc, getDoc } from "firebase/firestore"
 import type { MultipleChoiceQuestion, UnitNames } from "../types"
 import MultipleChoiceCard from "@/components/ui/multiple-choice"
 import BlankMultipleChoiceCard from "@/components/ui/blank-multiple-choice"
-
+import UnitMenu from "./unit-menu"
 
 const ALL_UNITS: UnitNames[] = [
     "Biochemistry",
@@ -37,6 +37,8 @@ const BLANK_QUESTION: MultipleChoiceQuestion = {
     correctAnswer: ""
 }
 
+const REVIEW_PERFORMANCE_STORAGE_NAME = "reviewPerformances"
+
 const fetchFirestoreDoc = async(docPath: string) => {
 
     const db = getFirestore(firebaseApp)
@@ -51,10 +53,26 @@ export default function PracticeClient() {
 
     const [questionCounts, setQuestionCounts] = useState<Record<string, number>>(EMPTY_COUNTS)
     const [chosenQuestion, setChosenQuestion] = useState<MultipleChoiceQuestion>(BLANK_QUESTION)
+    const [chosenUnit, setChosenUnit] = useState<UnitNames>("")
 
     const handleQuestionFetch = async(unit: UnitNames, questionNumber: number) => {
         const questionDoc = await fetchFirestoreDoc(`practice_questions/review_questions/${unit}/${unit}_${questionNumber}`) as MultipleChoiceQuestion
         setChosenQuestion(questionDoc)
+    }
+
+    const handleSubmittedAnswer = (chosenAnswer: string) => {
+
+        const questionNumber = chosenQuestion["questionNumber"]
+        const result = chosenQuestion["correctAnswer"] === chosenAnswer
+        const performance = sessionStorage.getItem(REVIEW_PERFORMANCE_STORAGE_NAME)
+        if (result && performance) {
+            const performanceJSON = JSON.parse(performance)
+            if (!performanceJSON[chosenUnit].includes(questionNumber)) {
+                performanceJSON[chosenUnit].push(questionNumber)
+                sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(performanceJSON, null))
+            }
+        }
+
     }
 
     useEffect(() => {
@@ -66,15 +84,27 @@ export default function PracticeClient() {
 
         fetchCountDoc()
 
+        // set up object in session storage to store which questions are answered correctly
+        const initialPerformance: Record<string, number[]> = {}
+        for (const unit of ALL_UNITS) {
+            initialPerformance[unit] = []
+        }
+        sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(initialPerformance, null))
+
     }, [])
 
-    return (
-        <div className="flex flex-col md:flex-row">
 
-            <QuestionMenu counts={questionCounts} units={ALL_UNITS} onSelectQuestion={handleQuestionFetch}/>
+
+    return (
+        <div className="flex flex-col md:flex-row mt-5 gap-10">
+
+            <div className="flex flex-col self-center md:self-start md:ml-10 w-8/10 md:w-1/4">
+                <UnitMenu onSelectUnit={setChosenUnit} />
+                <QuestionMenu counts={questionCounts} unit={chosenUnit} onSelectQuestion={handleQuestionFetch}/>
+            </div>
             
-            <div className="flex flex-col flex-1 h-screen justify-start items-center mt-5">
-                {chosenQuestion["unitName"] !== "" ? <MultipleChoiceCard question={chosenQuestion}/> : <BlankMultipleChoiceCard />}
+            <div className="flex flex-col flex-1 h-screen justify-start items-center">
+                {chosenQuestion["unitName"] !== "" ? <MultipleChoiceCard question={chosenQuestion} onSelectAnswer={handleSubmittedAnswer}/> : <BlankMultipleChoiceCard />}
             </div>
         </div>
     )

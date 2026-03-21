@@ -5,7 +5,7 @@ export default function BlankMultipleChoiceCard() {
 
     return (
         <div className="flex flex-col justify-center items-center rounded-2xl w-8/10 gap-y-5 p-5 border border-gray-500">
-            <h1 className="text-xl font-bold">Select a question to get started</h1>
+            <h1 className="text-xl text-center font-bold">Select a unit and question to get started</h1>
 
             <div                                                                                                                                        
                 className="h-[100px] w-full animate-shimmer rounded-xl"

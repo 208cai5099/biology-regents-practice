@@ -1,7 +1,5 @@
 'use client'
 
-import { Checkbox } from "@/components/ui/checkbox"
-import { Field, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { useState, useEffect } from "react"
 import { Button } from "./button"
 import { MultipleChoiceQuestion } from "@/app/types"
@@ -12,6 +10,7 @@ const BLACK_COLOR = "#000"
 
 interface MultipleChoiceCardProps {
     question: MultipleChoiceQuestion
+    onSelectAnswer: (chosenAnswer: string) => void
 }
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -23,7 +22,7 @@ function shuffleArray<T>(arr: T[]): T[] {
   return shuffled
 }
 
-export default function MultipleChoiceCard({ question }: MultipleChoiceCardProps) {
+export default function MultipleChoiceCard({ question, onSelectAnswer }: MultipleChoiceCardProps) {
 
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [chosenChoice, setChosenChoice] = useState("")
@@ -49,11 +48,6 @@ export default function MultipleChoiceCard({ question }: MultipleChoiceCardProps
         return choice === question["correctAnswer"] ? CORRECT_ANSWER_COLOR : BLACK_COLOR
     }
 
-    const handleStrikethrough = (choice: string) => {
-        if (!isSubmitted) return false
-        return choice !== question["correctAnswer"]
-    }
-
     return (
         <div
             className={`flex flex-col justify-center rounded-2xl w-8/10 gap-y-5 p-5 ${isWrong ? " animate-shake" : ""}`}
@@ -64,51 +58,44 @@ export default function MultipleChoiceCard({ question }: MultipleChoiceCardProps
 
             <p className="font-bold">{question["question"]}</p>
             
-            <div className="flex flex-col w-full">
-                <FieldGroup className="w-full">
-                    {shuffledChoices.map((choice, idx) => {
+            <div role="group" className="flex flex-col w-full gap-5">
+                {
+                    shuffledChoices.map((choice, idx) => {
                         return (
-                            <Field 
-                                orientation="horizontal" 
-                                key={`choice-${idx}`} 
-                                className="w-full"
+                            <div
+                                key={`choice-${idx + 1}`}
+                                className="flex flex-row w-full gap-2"
                             >
-                                <Checkbox
-                                    id={`choice-${idx}`}
-                                    name={`choice-${idx}`}
-                                    checked={chosenChoice === choice}
-                                    className={`cursor-pointer ${chosenChoice === choice ? "bg-black text-white" : ""}`}
-                                    style={{ 
-                                        background: isSubmitted && choice === question["correctAnswer"] ? "green" : "",
-                                        borderColor: isSubmitted && choice === question["correctAnswer"] ? "green" : "",
-                                        pointerEvents: isSubmitted || (chosenChoice !== "" && chosenChoice !== choice) ? "none" : "auto"
-                                    }}
-                                    onClick={() => handleChoice(choice)}
+                                <input
+                                    type="checkbox" 
+                                    id={`choice-${idx + 1}`}
+                                    name={`choice-${idx + 1}`}
+                                    onChange={() => handleChoice(choice)}
+                                    disabled={isSubmitted}
+                                    checked={choice === chosenChoice}
+                                    className={`accent-black`}
                                 />
-                                <FieldLabel 
-                                    htmlFor={`choice-${idx}`}
-                                    className="cursor-pointer"
+                                <label 
+                                    htmlFor={`choice-${idx + 1}`}
                                     style={{
-                                        color: handleTextColor(choice),
-                                        textDecoration: handleStrikethrough(choice) ? "line-through" : "",
-                                        pointerEvents: isSubmitted || (chosenChoice !== "" && chosenChoice !== choice) ? "none" : "auto", 
-                                        fontWeight: isSubmitted && choice === question["correctAnswer"] ? 1000 : ""
+                                        color: handleTextColor(choice)
                                     }}
                                 >
                                     {choice}
-                                </FieldLabel>
-                            </Field>
+                                </label>
+                            </div>
                         )
-                    })}
-                </FieldGroup>
+                    })
+                }
             </div>
 
             <Button 
                 className="w-3/10 self-center cursor-pointer text-white bg-card-button active:bg-card-button/50"
                 disabled={isSubmitted || chosenChoice === ""}
-                onClick={() => {
+                onClick={async() => {
                     if (chosenChoice !== question["correctAnswer"]) setIsWrong(true)
                     setIsSubmitted(true)
+                    onSelectAnswer(chosenChoice)
                 }}
             >
                 Submit
