@@ -1,0 +1,873 @@
+[
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "During childbirth, uterine contractions stimulate the release of oxytocin, which causes even stronger contractions until the baby is born. This is an example of which type of feedback?",
+        "wrongChoices": [
+            "Negative feedback",
+            "Hormonal inhibition",
+            "Homeostatic regulation"
+        ],
+        "correctAnswer": "Positive feedback",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "Homeostasis is best defined as which of the following?",
+        "wrongChoices": [
+            "The process by which organisms reproduce",
+            "The breakdown of food molecules for energy",
+            "The transfer of genetic information from parent to offspring"
+        ],
+        "correctAnswer": "The maintenance of a stable internal environment within an organism",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "A group of similar cells that work together to perform a specific function is called a(n):",
+        "wrongChoices": [
+            "Organ",
+            "Organ system",
+            "Organism"
+        ],
+        "correctAnswer": "Tissue",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "A multicellular organism begins its life as a single fertilized egg cell. Which process is primarily responsible for increasing the number of cells as the organism develops?",
+        "wrongChoices": [
+            "Meiotic cell division",
+            "Differentiation",
+            "Osmosis"
+        ],
+        "correctAnswer": "Mitotic cell division",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "Vaccines help prevent disease primarily by:",
+        "wrongChoices": [
+            "Killing bacteria directly in the bloodstream",
+            "Replacing damaged cells in the immune system",
+            "Lowering body temperature to reduce infection"
+        ],
+        "correctAnswer": "Stimulating the immune system to recognize and fight specific pathogens",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "Which of the following represents the correct hierarchical order of organization in a multicellular organism, from smallest to largest?",
+        "wrongChoices": [
+            "Organ → Tissue → Cell → Organ System → Organism",
+            "Tissue → Cell → Organ → Organism → Organ System",
+            "Cell → Organ → Tissue → Organ System → Organism"
+        ],
+        "correctAnswer": "Cell → Tissue → Organ → Organ System → Organism",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "Which of the following best describes the result of mitotic cell division in a multicellular organism?",
+        "wrongChoices": [
+            "Two daughter cells, each with half the genetic material of the parent cell",
+            "Four daughter cells, each genetically unique from the parent cell",
+            "One daughter cell with double the genetic material of the parent cell"
+        ],
+        "correctAnswer": "Two daughter cells, each with identical genetic material to the parent cell",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "What term describes the process by which cells become specialized in structure and function during development?",
+        "wrongChoices": [
+            "Mitosis",
+            "Replication",
+            "Homeostasis"
+        ],
+        "correctAnswer": "Differentiation",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "When body temperature rises above normal, the body responds by sweating to cool down. This is an example of which type of feedback mechanism?",
+        "wrongChoices": [
+            "Positive feedback",
+            "Neutral feedback",
+            "Genetic feedback"
+        ],
+        "correctAnswer": "Negative feedback",
+        "questionNumber": 9
+    },
+    {
+        "unitName": "Organism Organization and Homeostasis",
+        "question": "Disease can be described in terms of homeostasis as:",
+        "wrongChoices": [
+            "An increase in positive feedback mechanisms",
+            "The normal functioning of all organ systems",
+            "The successful replication of body cells"
+        ],
+        "correctAnswer": "A failure of the body to maintain homeostasis",
+        "questionNumber": 10
+    },
+    {
+        "unitName": "Genetics",
+        "question": "Which of the following is a TRUE statement about mutations?",
+        "wrongChoices": [
+            "All mutations are harmful to the organism",
+            "Mutations can only be caused by radiation",
+            "Mutations always result in a change in the organism's appearance"
+        ],
+        "correctAnswer": "Only mutations in sex cells can be passed on to offspring",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Genetics",
+        "question": "A scientist discovers a segment of DNA that does not code for any protein. Which of the following could be true about this segment?",
+        "wrongChoices": [
+            "It must be a mistake and should be removed",
+            "It is only found in organisms that have undergone genetic modification",
+            "It is a type of RNA that has been incorrectly identified as DNA"
+        ],
+        "correctAnswer": "It may have a regulatory or structural function, or its function may be unknown",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Genetics",
+        "question": "Which of the following best describes the relationship between chromosomes and DNA?",
+        "wrongChoices": [
+            "Chromosomes are made of proteins that wrap around DNA molecules",
+            "DNA is made up of multiple chromosomes joined together",
+            "Chromosomes are only found in sex cells, while DNA is found in all cells"
+        ],
+        "correctAnswer": "Each chromosome consists of a single very long DNA molecule",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Genetics",
+        "question": "Which of the following is an example of how environmental factors can influence gene expression?",
+        "wrongChoices": [
+            "A child inheriting blue eyes from both parents",
+            "A dog passing on a fur color gene to its puppies",
+            "Two siblings having the same blood type"
+        ],
+        "correctAnswer": "A plant growing taller when exposed to more sunlight",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Genetics",
+        "question": "Although all cells in an organism have the same genetic content, they can differ in structure and function because:",
+        "wrongChoices": [
+            "Different cells contain different chromosomes",
+            "Mutations occur in every cell to change the DNA",
+            "Each cell type has a unique DNA sequence"
+        ],
+        "correctAnswer": "Different genes are expressed (turned on or off) in different cells",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Genetics",
+        "question": "What is genetic engineering in the context of modifying organisms?",
+        "wrongChoices": [
+            "The process by which organisms naturally evolve new traits over time",
+            "A technique that uses selective breeding across many generations",
+            "The process of crossing over that occurs naturally during meiosis"
+        ],
+        "correctAnswer": "The use of scientific advances to deliberately alter the DNA of an organism",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Genetics",
+        "question": "During meiosis, chromosomes can swap sections of DNA with each other. What is this process called?",
+        "wrongChoices": [
+            "Mutation",
+            "Binary fission",
+            "Transcription"
+        ],
+        "correctAnswer": "Crossing over",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Genetics",
+        "question": "Which of the following is NOT a source of genetic variation in a population?",
+        "wrongChoices": [
+            "Mutations in DNA",
+            "Crossing over during meiosis",
+            "Sexual reproduction combining parental chromosomes"
+        ],
+        "correctAnswer": "Mitosis in body cells",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which type of transport is associated with molecules moving across the cell membrane from an area of high concentration to an area of low concentration without requiring energy?",
+        "wrongChoices": [
+            "Active transport",
+            "Endocytosis",
+            "Exocytosis"
+        ],
+        "correctAnswer": "Diffusion",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following best describes osmosis?",
+        "wrongChoices": [
+            "The movement of solutes from low to high concentration across a membrane",
+            "The active transport of water molecules through a membrane",
+            "The diffusion of large molecules through a cell membrane"
+        ],
+        "correctAnswer": "The diffusion of water molecules from high to low concentration",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Sugar molecules can combine with other elements to form amino acids. What larger molecules can amino acids be assembled into?",
+        "wrongChoices": [
+            "Lipids",
+            "Carbohydrates",
+            "Nucleotides"
+        ],
+        "correctAnswer": "Proteins",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the primary purpose of messenger RNA (mRNA) in protein synthesis?",
+        "wrongChoices": [
+            "To provide the structural framework of the ribosome during translation",
+            "To bond amino acids together to form a polypeptide chain",
+            "To replicate the DNA sequence before cell division"
+        ],
+        "correctAnswer": "To carry genetic instructions to the ribosome for building a protein",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Why is the three-dimensional shape of an enzyme so important to its function?",
+        "wrongChoices": [
+            "It allows the enzyme to dissolve more easily in the cytoplasm",
+            "It determines the color of the enzyme so cells can identify it",
+            "It helps the enzyme travel faster through the bloodstream"
+        ],
+        "correctAnswer": "The shape of the active site must match the specific substrate for the enzyme to catalyze the reaction",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the role of transfer RNA (tRNA) during translation?",
+        "wrongChoices": [
+            "It carries the genetic code from the nucleus to the ribosome",
+            "It catalyzes the formation of peptide bonds between amino acids",
+            "It unwinds the DNA double helix to allow transcription to occur"
+        ],
+        "correctAnswer": "It brings specific amino acids to the ribosome and matches them to the correct codon on the mRNA",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following is a common essential function of proteins in the body?",
+        "wrongChoices": [
+            "Storing genetic information",
+            "Providing long-term energy storage",
+            "Forming the phospholipid bilayer of cell membranes"
+        ],
+        "correctAnswer": "Acting as enzymes to speed up chemical reactions",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which type of energy is converted into chemical energy during photosynthesis?",
+        "wrongChoices": [
+            "Thermal energy",
+            "Kinetic energy",
+            "Nuclear energy"
+        ],
+        "correctAnswer": "Light energy",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following correctly identifies the reactants of aerobic cellular respiration?",
+        "wrongChoices": [
+            "Carbon dioxide and water",
+            "Oxygen and carbon dioxide",
+            "ATP and carbon dioxide"
+        ],
+        "correctAnswer": "Glucose and oxygen",
+        "questionNumber": 9
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following is NOT a function commonly performed by proteins in living organisms?",
+        "wrongChoices": [
+            "Providing structural support in tissues",
+            "Transporting oxygen in the blood",
+            "Defending the body against pathogens"
+        ],
+        "correctAnswer": "Storing hereditary information in the nucleus",
+        "questionNumber": 10
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which three elements make up sugar molecules?",
+        "wrongChoices": [
+            "Carbon, nitrogen, and oxygen",
+            "Hydrogen, nitrogen, and phosphorus",
+            "Carbon, hydrogen, and nitrogen"
+        ],
+        "correctAnswer": "Carbon, hydrogen, and oxygen",
+        "questionNumber": 11
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the primary purpose of messenger RNA (mRNA) in protein synthesis?",
+        "wrongChoices": [
+            "To permanently store genetic information in the nucleus",
+            "To directly catalyze the assembly of amino acids into proteins",
+            "To transport completed proteins out of the cell"
+        ],
+        "correctAnswer": "To carry the genetic instructions from DNA in the nucleus to the ribosome in the cytoplasm",
+        "questionNumber": 12
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What are the chemical products of photosynthesis?",
+        "wrongChoices": [
+            "Carbon dioxide and water",
+            "ATP and NADH",
+            "Sugars and oxygen",
+            "Glucose and carbon dioxide"
+        ],
+        "correctAnswer": "Glucose and oxygen",
+        "questionNumber": 13
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following best describes cellular respiration?",
+        "wrongChoices": [
+            "A process that uses light energy to produce glucose",
+            "A process that converts water into oxygen and hydrogen",
+            "A process that stores solar energy in sugar molecules"
+        ],
+        "correctAnswer": "A process that breaks bonds in glucose molecules to produce ATP",
+        "questionNumber": 14
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the role of transfer RNA (tRNA) during the translation step in protein synthesis?",
+        "wrongChoices": [
+            "It carries the genetic instructions from the nucleus to the ribosome",
+            "It catalyzes the formation of the bonds between nucleotides",
+            "It unwinds the DNA double helix to allow for transcription"
+        ],
+        "correctAnswer": "It carries specific amino acids to the ribosome and matches them to the corresponding codons on the mRNA",
+        "questionNumber": 15
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the primary molecule produced during cellular respiration that is used to power life processes?",
+        "wrongChoices": [
+            "DNA",
+            "Glucose",
+            "NADH"
+        ],
+        "correctAnswer": "ATP",
+        "questionNumber": 16
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What are the products of photosynthesis?",
+        "wrongChoices": [
+            "Carbon dioxide and water",
+            "ATP and carbon dioxide",
+            "Oxygen and ATP"
+        ],
+        "correctAnswer": "Glucose and oxygen",
+        "questionNumber": 17
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following molecules contains a hydrocarbon backbone that can combine with other elements to form DNA?",
+        "wrongChoices": [
+            "Oxygen",
+            "Water",
+            "Nitrogen gas"
+        ],
+        "correctAnswer": "Sugar",
+        "questionNumber": 18
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What is the main biochemical process in which solar energy is captured and stored on Earth?",
+        "wrongChoices": [
+            "Cellular respiration",
+            "The water cycle",
+            "Nuclear fusion"
+        ],
+        "correctAnswer": "Photosynthesis",
+        "questionNumber": 19
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What are the products of aerobic cellular respiration?",
+        "wrongChoices": [
+            "Glucose and oxygen",
+            "Carbon dioxide and ATP only",
+            "Water and glucose"
+        ],
+        "correctAnswer": "Carbon dioxide, water, and ATP",
+        "questionNumber": 20
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "Which of the following correctly identifies the reactants of photosynthesis?",
+        "wrongChoices": [
+            "Glucose and oxygen",
+            "Carbon dioxide and ATP",
+            "Water and glucose"
+        ],
+        "correctAnswer": "Carbon dioxide and water",
+        "questionNumber": 21
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What will likely happen to an enzyme if its shape is altered by high heat or extreme pH?",
+        "wrongChoices": [
+            "The enzyme will work faster because it has more energy",
+            "The enzyme will change its active site to fit a new substrate",
+            "The enzyme will permanently bond to its substrate and cannot be reused"
+        ],
+        "correctAnswer": "The enzyme will change shape and can no longer bind to its substrate",
+        "questionNumber": 22
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "During cellular respiration, which molecule is broken down along with oxygen to release energy?",
+        "wrongChoices": [
+            "DNA",
+            "Carbon dioxide",
+            "Water"
+        ],
+        "correctAnswer": "Glucose",
+        "questionNumber": 23
+    },
+    {
+        "unitName": "Biochemistry",
+        "question": "What are the chemical reactants of photosynthesis?",
+        "wrongChoices": [
+            "Glucose and oxygen",
+            "ATP and NADPH",
+            "Oxygen and water"
+        ],
+        "correctAnswer": "Carbon dioxide and water",
+        "questionNumber": 24
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "Which of the following is NOT an example of an anthropogenic (human-caused) impact on ecosystems?",
+        "wrongChoices": [
+            "Introduction of invasive species",
+            "Habitat destruction due to deforestation",
+            "Pollution from industrial waste"
+        ],
+        "correctAnswer": "A volcanic eruption destroying a forest",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "At each link upward in a food web, approximately what percentage of energy is transferred from one trophic level to the next?",
+        "wrongChoices": [
+            "50%",
+            "75%",
+            "90%"
+        ],
+        "correctAnswer": "10%",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "Biodiversity in an ecosystem can be decreased by which of the following?",
+        "wrongChoices": [
+            "Speciation of new species",
+            "Formation of new habitats",
+            "Increase in genetic variation"
+        ],
+        "correctAnswer": "Extinction of existing species",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "What is the term for the maximum number of individuals of a species that an ecosystem can sustainably support?",
+        "wrongChoices": [
+            "Population density",
+            "Biotic potential",
+            "Species richness"
+        ],
+        "correctAnswer": "Carrying capacity",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "Why is sustaining biodiversity important for humans?",
+        "wrongChoices": [
+            "It ensures that only the strongest species survive",
+            "It eliminates the need for conservation efforts",
+            "It reduces competition among human populations"
+        ],
+        "correctAnswer": "It provides resources, ecosystem services, and landscapes of recreational value",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "Which organisms form the lowest level of a food web and are responsible for converting sunlight into chemical energy?",
+        "wrongChoices": [
+            "Decomposers such as fungi and bacteria",
+            "Primary consumers such as herbivores",
+            "Apex predators at the top of the food chain"
+        ],
+        "correctAnswer": "Producers that perform photosynthesis",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "When evaluating a solution to a human-induced environmental problem, which of the following considerations is MOST important to include?",
+        "wrongChoices": [
+            "Only the financial cost of the solution",
+            "The opinion of a single stakeholder group",
+            "Whether the solution is the fastest option available"
+        ],
+        "correctAnswer": "A range of constraints including cost, safety, reliability, and social and environmental impacts",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "An ecosystem that returns to its original state after a moderate disturbance is said to be which of the following?",
+        "wrongChoices": [
+            "Unstable",
+            "Fragile",
+            "Degraded"
+        ],
+        "correctAnswer": "Resilient",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "An invasive species is introduced into a new ecosystem. Which of the following is the most likely immediate impact?",
+        "wrongChoices": [
+            "It increases the carrying capacity of the ecosystem",
+            "It increases species richness without any negative effects",
+            "It immediately goes extinct due to unfamiliar conditions"
+        ],
+        "correctAnswer": "It competes with native species, potentially threatening their survival",
+        "questionNumber": 9
+    },
+    {
+        "unitName": "Ecology and Human Impacts on Ecosystems",
+        "question": "Which of the following is an example of an abiotic factor that can affect the carrying capacity of an ecosystem?",
+        "wrongChoices": [
+            "Predation by a natural predator",
+            "Competition among members of the same species",
+            "Introduction of a parasitic organism"
+        ],
+        "correctAnswer": "Availability of water and sunlight",
+        "questionNumber": 10
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Which of the following best describes a \"carbon sink\"?",
+        "wrongChoices": [
+            "A reservoir that releases more carbon than it absorbs",
+            "A process that converts carbon dioxide into methane",
+            "An area of land that has been stripped of all vegetation"
+        ],
+        "correctAnswer": "A reservoir that absorbs more carbon than it releases",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Which human activity has most significantly increased the concentration of carbon dioxide in the atmosphere?",
+        "wrongChoices": [
+            "Watering crops through irrigation",
+            "Fishing in ocean waters",
+            "Releasing radioactive waste into the ocean"
+        ],
+        "correctAnswer": "Burning fossil fuels and deforestation",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "When decomposers break down dead organic matter, carbon is primarily returned to the atmosphere in the form of:",
+        "wrongChoices": [
+            "Pure carbon (graphite)",
+            "Glucose",
+            "Calcium carbonate"
+        ],
+        "correctAnswer": "Carbon dioxide",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "During photosynthesis, plants remove carbon from the atmosphere in the form of which molecule?",
+        "wrongChoices": [
+            "Oxygen",
+            "Carbon monoxide",
+            "Methane"
+        ],
+        "correctAnswer": "Carbon dioxide",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Which of the following processes releases carbon dioxide back into the atmosphere?",
+        "wrongChoices": [
+            "Photosynthesis",
+            "Nitrogen fixation",
+            "Transpiration"
+        ],
+        "correctAnswer": "Cellular respiration",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Which two biochemical processes are the most important for cycling carbon between living organisms and the atmosphere?",
+        "wrongChoices": [
+            "Transpiration and evaporation",
+            "Nitrogen fixation and denitrification",
+            "Decomposition and precipitation"
+        ],
+        "correctAnswer": "Photosynthesis and cellular respiration",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Early in Earth's history, gradual changes in the atmosphere occurred largely because plants and other photosynthetic organisms captured carbon dioxide and released which gas?",
+        "wrongChoices": [
+            "Nitrogen",
+            "Hydrogen",
+            "Methane"
+        ],
+        "correctAnswer": "Oxygen",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Burning fossil fuels primarily affects the carbon cycle by doing which of the following?",
+        "wrongChoices": [
+            "Removing carbon dioxide from the atmosphere",
+            "Converting atmospheric carbon into ocean sediments",
+            "Increasing the rate of photosynthesis globally"
+        ],
+        "correctAnswer": "Releasing stored carbon back into the atmosphere as carbon dioxide",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Carbon is stored in all of the following reservoirs EXCEPT:",
+        "wrongChoices": [
+            "The atmosphere",
+            "Fossil fuels underground",
+            "Ocean water"
+        ],
+        "correctAnswer": "The vacuum of outer space",
+        "questionNumber": 9
+    },
+    {
+        "unitName": "The Carbon Cycle",
+        "question": "Increased concentrations of carbon dioxide and other greenhouse gases in the atmosphere are most directly associated with which environmental change?",
+        "wrongChoices": [
+            "A decrease in global average temperatures",
+            "A reduction in the rate of oceanic evaporation",
+            "An increase in the amount of oxygen in the atmosphere"
+        ],
+        "correctAnswer": "An increase in global average temperatures and climate change",
+        "questionNumber": 10
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "How many chromosomes does a human gamete (sperm or egg cell) contain?",
+        "wrongChoices": [
+            "46",
+            "92",
+            "12"
+        ],
+        "correctAnswer": "23",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "What is the primary nutritional benefit provided to a newborn through breast milk?",
+        "wrongChoices": [
+            "It provides oxygen directly to the newborn's lungs",
+            "It supplies the newborn with red blood cells",
+            "It stimulates the newborn's reproductive organs"
+        ],
+        "correctAnswer": "It provides essential nutrients and antibodies to nourish and protect the newborn",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "Where does fertilization most commonly occur in the female reproductive system?",
+        "wrongChoices": [
+            "Uterus",
+            "Ovaries",
+            "Vagina"
+        ],
+        "correctAnswer": "Fallopian tubes",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "What type of cell division produces gametes (sperm and egg cells) in humans?",
+        "wrongChoices": [
+            "Mitotic cell division",
+            "Binary fission",
+            "Budding"
+        ],
+        "correctAnswer": "Meiotic cell division",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "Where are sperm cells produced in the male reproductive system?",
+        "wrongChoices": [
+            "Epididymis",
+            "Seminal vesicles",
+            "Prostate gland"
+        ],
+        "correctAnswer": "Testes",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "Which organ in the female reproductive system is responsible for producing egg cells?",
+        "wrongChoices": [
+            "Uterus",
+            "Fallopian tubes",
+            "Cervix"
+        ],
+        "correctAnswer": "Ovaries",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "What is the primary function of the uterus in human reproduction?",
+        "wrongChoices": [
+            "To produce female sex hormones",
+            "To transport eggs from the ovaries",
+            "To produce eggs for fertilization"
+        ],
+        "correctAnswer": "To support the development of the embryo and fetus",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Reproduction",
+        "question": "What is the role of the placenta during pregnancy?",
+        "wrongChoices": [
+            "It produces sperm cells for fertilization",
+            "It stores eggs until they are fertilized",
+            "It triggers ovulation in the mother"
+        ],
+        "correctAnswer": "It provides essential nutrients and oxygen to the developing fetus",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Evolution",
+        "question": "Which of the following best describes the evidence that DNA sequences provide for evolution?",
+        "wrongChoices": [
+            "DNA sequences are identical across all species, proving a common ancestor",
+            "DNA sequences only provide evidence of evolution when combined with the fossil record",
+            "DNA sequences are too variable to be useful in determining evolutionary relationships"
+        ],
+        "correctAnswer": "DNA sequences vary among species, but overlaps can be used to infer branching lines of descent",
+        "questionNumber": 1
+    },
+    {
+        "unitName": "Evolution",
+        "question": "When two populations of the same species become geographically isolated and experience different environmental conditions over a long period of time, which outcome is most likely?",
+        "wrongChoices": [
+            "Both populations will evolve to become identical because they started with the same genes",
+            "One population will always go extinct while the other survives",
+            "Genetic variation in both populations will decrease to zero"
+        ],
+        "correctAnswer": "The populations may diverge and eventually become distinct species",
+        "questionNumber": 2
+    },
+    {
+        "unitName": "Evolution",
+        "question": "Which of the following is NOT a factor that drives evolution?",
+        "wrongChoices": [
+            "The potential for a species to increase in number",
+            "Genetic variation due to mutation and sexual reproduction",
+            "Competition for limited resources in the environment"
+        ],
+        "correctAnswer": "The ability of all organisms to adapt equally to any environment",
+        "questionNumber": 3
+    },
+    {
+        "unitName": "Evolution",
+        "question": "If the environment in a habitat changes dramatically, what is most likely to happen to traits that were previously advantageous?",
+        "wrongChoices": [
+            "Those traits will always remain advantageous regardless of environmental change",
+            "The population distribution of previously advantageous traits may change",
+            "All individuals with previously advantageous traits will immediately go extinct",
+            "Genetic variation in the population will completely disappear"
+        ],
+        "correctAnswer": "The population distribution of previously advantageous traits in the population may change",
+        "questionNumber": 4
+    },
+    {
+        "unitName": "Evolution",
+        "question": "Which of the following is a necessary condition for natural selection to occur?",
+        "wrongChoices": [
+            "All individuals in a population must have identical genetic information",
+            "The environment must remain constant over many generations",
+            "Mutations must occur in every individual of a population simultaneously"
+        ],
+        "correctAnswer": "There must be heritable variation in traits among individuals in a population",
+        "questionNumber": 5
+    },
+    {
+        "unitName": "Evolution",
+        "question": "Why do species sometimes become extinct when environmental changes occur?",
+        "wrongChoices": [
+            "Because all species eventually run out of genetic mutations",
+            "Because predators always eliminate weaker species during environmental change",
+            "Because sexual reproduction stops occurring during periods of environmental stress"
+        ],
+        "correctAnswer": "Because species can no longer survive and reproduce if changes are too fast or drastic for evolution to keep pace",
+        "questionNumber": 6
+    },
+    {
+        "unitName": "Evolution",
+        "question": "Which of the following types of evidence can be used to determine evolutionary relationships between species?",
+        "wrongChoices": [
+            "Only the fossil record and anatomical evidence",
+            "Only DNA sequences, because other evidence is unreliable",
+            "Behavioral observations and geographic location alone"
+        ],
+        "correctAnswer": "DNA sequences, amino acid sequences, and anatomical/embryological evidence",
+        "questionNumber": 7
+    },
+    {
+        "unitName": "Evolution",
+        "question": "In a population of rabbits, those with thicker fur survive colder winters and reproduce more than thin-furred rabbits. Over many generations, what would you expect to observe in this population?",
+        "wrongChoices": [
+            "A decrease in the proportion of rabbits with thick fur",
+            "No change in the proportion of thick-furred rabbits because the environment controls population size",
+            "The elimination of all genetic variation related to fur thickness"
+        ],
+        "correctAnswer": "An increase in the proportion of rabbits with thick fur in future generations",
+        "questionNumber": 8
+    },
+    {
+        "unitName": "Evolution",
+        "question": "A population of beetles lives in an area with dark soil. Over time, beetles with darker coloration survive and reproduce more successfully than lighter-colored beetles. This is an example of:",
+        "wrongChoices": [
+            "Genetic drift",
+            "Mutation",
+            "Gene flow"
+        ],
+        "correctAnswer": "Natural selection",
+        "questionNumber": 9
+    }
+]

@@ -1,5 +1,5 @@
 import fs from "fs/promises";
-import { Cluster, PhenomenaList, ScienceStandard, Unit } from "./types.js";
+import { Cluster, PhenomenaList, UnitNames, ScienceStandard, Unit, MCQuestion } from "./types.js";
 import { db } from "./setup.js";
 import { MCQuestionSchema } from "./question-generation/review-generator.js";
 import { z } from "zod"
@@ -41,15 +41,16 @@ const readJSONFile = async(filepath: string) => {
 
 }
 
-const addReviewQuestions = async(questionsList: z.infer<typeof MCQuestionSchema>[]) => {
+const addReviewQuestions = async(questionsList: MCQuestion[]) => {
 
   try {
 
     const batch = db.batch()
     for (const question of questionsList) {
-      const unitQuestionsCollection = db.collection("practice_questions").doc("review_questions").collection(question["unitName"])
-      const docRef = unitQuestionsCollection.doc()
-      batch.set(docRef, question)
+      const unit = question["unitName"]
+      const questionNumber = question["questionNumber"]
+      const newQuestionDocRef = db.collection("practice_questions").doc("review_questions").collection(unit).doc(`${unit}_${questionNumber}`)
+      batch.set(newQuestionDocRef, question)
     }
 
     await batch.commit()
@@ -58,4 +59,27 @@ const addReviewQuestions = async(questionsList: z.infer<typeof MCQuestionSchema>
     throw error
   }
 
+}
+
+const fetchReviewQuestions = async(units: UnitNames[]) => {
+
+  try {
+
+    const reviewQuestionsList: z.infer<typeof MCQuestionSchema>[] = []
+
+    for (const unit of units) {
+
+      const collectionRef = db.collection("practice_questions").doc("review_questions").collection(unit)
+      const collectionSnapshot = await collectionRef.get()
+      collectionSnapshot.docs.forEach((doc) => {
+        reviewQuestionsList.push(doc.data() as z.infer<typeof MCQuestionSchema>)
+      })
+
+    }
+
+    return reviewQuestionsList
+
+  } catch (error) {
+    throw error
+  }
 }

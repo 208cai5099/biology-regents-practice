@@ -84,7 +84,7 @@ export default function Home() {
             )}
         </div>
 
-        <div className="text-sm text-gray-500 self-end mr-5">
+        <div className="text-sm text-gray-500 self-end mr-5 mb-10">
           <p>
             Images courtesy of <a className="underline" href="https://openmoji.org/" target="_blank" rel="noopener noreferrer">OpenMoji</a> · <a className="underline" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_black" rel="noopener noreferrer">CC BY-SA 4.0</a>
           </p>

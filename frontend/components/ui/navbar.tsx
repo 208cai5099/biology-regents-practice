@@ -12,17 +12,15 @@ function NavBar() {
                     </Link>
                 </Button>
             </div>
-            <div>
-                <Button className="text-lg font-bold opacity-75 hover:opacity-100" variant="link" asChild>
-                    <Link href="/practice">
-                        Practice
-                    </Link>
-                </Button>
-                <Button className="text-lg font-bold opacity-75 hover:opacity-100" variant="link" asChild>
-                    <Link href="/login">
-                        Login
-                    </Link>
-                </Button>
+            <div className="flex flex-row gap-5 mr-3">
+                <Link href="/practice" className="relative group text-lg font-bold hover:text-card-button text-white">
+                    Practice
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full" />                     
+                </Link>
+                 <Link href="/login" className="relative group text-lg font-bold hover:text-card-button text-white">
+                    Login
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full" />                     
+                </Link>
             </div>
         </div>
     )

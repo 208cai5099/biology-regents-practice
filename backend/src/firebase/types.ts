@@ -32,3 +32,11 @@ export interface PhenomenaList {
 }
 
 export type UnitNames = "Organism Organization and Homeostasis" | "Genetics" | "Biochemistry" | "Ecology and Human Impacts on Ecosystems" | "The Carbon Cycle" | "Reproduction" | "Evolution"
+
+export interface MCQuestion {
+    unitName: UnitNames,
+    question: string,
+    wrongChoices: string[],
+    correctAnswer: string,
+    questionNumber: number
+}

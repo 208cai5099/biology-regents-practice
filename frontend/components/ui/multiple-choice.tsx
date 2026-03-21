@@ -11,6 +11,7 @@ type MCQuestion = {
     allChoices: string[]
 }
 
+const CORRECT_ANSWER_SHADOW = "#A8D86E"
 const CORRECT_ANSWER_COLOR = "#2A6E3F"
 const BLACK_COLOR = "#000"
 
@@ -18,6 +19,7 @@ export default function MultipleChoiceCard({question, correctAnswer, allChoices}
 
     const [isSubmitted, setIsSubmitted] = useState(false)
     const [chosenChoice, setChosenChoice] = useState(-1)
+    const [isWrong, setIsWrong] = useState(false)
 
     const handleChoice = (index: number) => {
         if (chosenChoice === index) setChosenChoice(-1)
@@ -35,7 +37,12 @@ export default function MultipleChoiceCard({question, correctAnswer, allChoices}
     }
 
     return (
-        <div className="flex flex-col justify-center bg-card border-gray-50 shadow-sm rounded-2xl w-8/10 gap-y-5 p-5">
+        <div
+            className={`flex flex-col justify-center rounded-2xl w-8/10 gap-y-5 p-5 ${isWrong ? " animate-shake" : ""}`}
+            style={{
+                boxShadow: isSubmitted && chosenChoice === correctAnswer ? `0 0 5px 2px ${CORRECT_ANSWER_SHADOW}` : "0 0 1px 1px gray"
+            }}
+        >
 
             <div>
                 <p className="font-bold">{question}</p>
@@ -82,7 +89,10 @@ export default function MultipleChoiceCard({question, correctAnswer, allChoices}
             <Button 
                 className="w-3/10 self-center cursor-pointer text-white bg-card-button active:bg-card-button/50"
                 disabled={isSubmitted || chosenChoice === -1}
-                onClick={() => setIsSubmitted(true)}
+                onClick={() => {
+                    if (chosenChoice !== correctAnswer) setIsWrong(true)
+                    setIsSubmitted(true)
+                }}
             >
                 Submit
             </Button>
