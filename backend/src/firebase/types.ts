@@ -37,6 +37,5 @@ export interface MCQuestion {
     unitName: UnitNames,
     question: string,
     wrongChoices: string[],
-    correctAnswer: string,
-    questionNumber: number
+    correctAnswer: string
 }

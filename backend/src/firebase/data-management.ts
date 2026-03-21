@@ -45,15 +45,27 @@ const addReviewQuestions = async(questionsList: MCQuestion[]) => {
 
   try {
 
-    const batch = db.batch()
-    for (const question of questionsList) {
-      const unit = question["unitName"]
-      const questionNumber = question["questionNumber"]
-      const newQuestionDocRef = db.collection("practice_questions").doc("review_questions").collection(unit).doc(`${unit}_${questionNumber}`)
-      batch.set(newQuestionDocRef, question)
-    }
+    // get the current count of questions in this unit
+    const countsDocRef = db.collection("practice_questions").doc("review_questions_counts")
+    const countsSnapshot = await countsDocRef.get()
 
-    await batch.commit()
+    if (countsSnapshot.exists) {
+
+      const countsDoc = countsSnapshot.data() as Record<UnitNames, number> 
+
+      const batch = db.batch()
+      for (const question of questionsList) {
+        const unit = question["unitName"]
+        countsDoc[unit] += 1
+        const newQuestionNumber = countsDoc[unit]
+        const newQuestionDocRef = db.collection("practice_questions").doc("review_questions").collection(unit).doc(`${unit}_${newQuestionNumber}`)
+        batch.set(newQuestionDocRef, question)
+      }
+
+      batch.set(countsDocRef, countsDoc)
+      await batch.commit()
+
+    }
 
   } catch (error) {
     throw error

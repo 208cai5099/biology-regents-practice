@@ -4,12 +4,15 @@ import { Footer } from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
 import { useEffect, useRef } from "react";
 import MultipleChoiceCard from "@/components/ui/multiple-choice";
+import Image from "next/image"
+import { MultipleChoiceQuestion } from "./types";
 
-const sampleQuestion = {
+const sampleQuestion: MultipleChoiceQuestion = {
+  unitName: "Biochemistry",
+  questionNumber: 1,
   question: "Why is the three-dimensional shape of an enzyme so important to its function?",
-  correctAnswer: 0,
-  allChoices: [
-    "The shape of the active site must match the specific substrate for the enzyme to catalyze the reaction",
+  correctAnswer: "The shape of the active site must match the specific substrate for the enzyme to catalyze the reaction",
+  wrongChoices: [
     "It allows the enzyme to dissolve more easily in the cytoplasm",
     "It determines the color of the enzyme so cells can identify it",
     "It helps the enzyme travel faster through the bloodstream"
@@ -19,17 +22,11 @@ const sampleQuestion = {
 export default function Home() {
 
   // need to update
-  const imgPaths: string[] = [
-    "https://openmoji.org/data/black/svg/1F9EC.svg",
-    "https://openmoji.org/data/black/svg/1F9EB.svg",
-    "https://openmoji.org/data/black/svg/1F9A0.svg",
-    "https://openmoji.org/data/black/svg/1F332.svg",
-    "https://openmoji.org/data/black/svg/1F40E.svg",
-    "https://openmoji.org/data/black/svg/1F48A.svg",
-    "https://openmoji.org/data/black/svg/1F401.svg",
-    "https://openmoji.org/data/black/svg/1F98A.svg",
-    "https://openmoji.org/data/black/svg/1F422.svg",
-    "https://openmoji.org/data/black/svg/2600.svg"
+  const IMG_PATHS: string[] = [
+    "notes.svg",
+    "brain.svg",
+    "thinking.svg",
+    "test.svg" 
   ]
 
   const containerRef = useRef<HTMLDivElement>(null)
@@ -68,17 +65,20 @@ export default function Home() {
         </div>
 
         <div className="w-full max-w-9/10 relative h-[100px] overflow-hidden mt-5 mask-l-from-97% mask-l-to-100% mask-r-from-97% mask-r-to-100%">
-            {[...imgPaths].map((path, idx) => {
+            {[...IMG_PATHS].map((path, idx) => {
 
-              const delay = 30 / imgPaths.length * (imgPaths.length - (idx + 1)) * -1
+              const delay = 30 / IMG_PATHS.length * (IMG_PATHS.length - (idx + 1)) * -1
               return (
-                <img
+                <Image
                   key={idx}
                   src={path}
-                  className="absolute w-[120px] h-[100px] rounded-md marquee-animate"
-                  style={{animationDelay: `${delay}s`}}
+                  width={100}
+                  height={100}
+                  className="absolute rounded-md marquee-animate"
+                  style={{animationDelay: `${delay}s`, height: "auto"}}
+                  alt={`image of ${path.replace(".svg", "")}`}
                 >
-                </img>
+                </Image>
               )
             }
             )}
@@ -102,7 +102,7 @@ export default function Home() {
             </div>
 
             <div className="slide-in-right flex flex-col justify-center items-center  rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
-              <MultipleChoiceCard {...sampleQuestion}/>
+              <MultipleChoiceCard question={sampleQuestion}/>
             </div>
           </div>
 
