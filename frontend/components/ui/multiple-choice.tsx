@@ -90,7 +90,7 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
             </div>
 
             <Button 
-                className="w-3/10 self-center cursor-pointer text-white bg-card-button active:bg-card-button/50"
+                className="w-3/10 self-center cursor-pointer text-white bg-deepgreen active:bg-deepgreen/50"
                 disabled={isSubmitted || chosenChoice === ""}
                 onClick={async() => {
                     if (chosenChoice !== question["correctAnswer"]) setIsWrong(true)

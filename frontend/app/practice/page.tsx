@@ -1,6 +1,5 @@
 import { NavBar } from "@/components/ui/navbar"
 import PracticeClient from "./practice-client"
-import UnitMenu from "@/app/practice/unit-menu"
 import { Footer } from "@/components/ui/footer"
 
 export default function ReviewPractice() {

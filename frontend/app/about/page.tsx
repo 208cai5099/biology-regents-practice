@@ -1,63 +1,66 @@
-"use client";
-
 import { Footer } from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
-import { useEffect, useRef } from "react";
 
 export default function About() {
-    const containerRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const container = containerRef.current;
-        if (!container) return;
-
-        const cards = container.querySelectorAll(".slide-in-left, .slide-in-right");
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        cards.forEach((card) => observer.observe(card));
-
-        return () => observer.disconnect();
-    }, []);
-
+   
     return (
-        <div className="flex flex-col min-h-screen overflow-hidden">
+        <div className="flex flex-col w-full overflow-hidden">
             <NavBar />
 
-            <div ref={containerRef} className="flex flex-col min-h-screen m-5 gap-10">
+            <div className="flex flex-col m-5 gap-5">
 
-                <div className="slide-in-left flex flex-col self-start border border-gray-50 shadow-xs rounded-md gap-1 w-full max-w-7/8">
-                    <h1 className="text-2xl px-1">Hi there!</h1>
-                    <p className="text-lg px-1">
-                        Welcome to BuddinBio! This website is a practice playground for people to review and apply biology concepts aligned to the New York State Life Science curriculum.
-                        Specifically designed for students, this website's main goal is to help students prepare for the NYS Biology Regents exam. Students can review reinforce fundamental
-                        biology concepts and take a crack at cluster questions that resemble those from the actual exam. Hope you enjoy using the site!
+                <div className="flex flex-row self-center font-bold">
+                    <h1 className="text-3xl">Welcome to Buddin</h1>
+                    <h1 className="text-3xl text-darkestgreen">Bio!</h1>
+                </div>
+
+                <div className="self-center text-center w-8/10">
+                    <p className="font-semibold text-lg">
+                        A simple and convenient study tool for the New York State Biology Regents
                     </p>
                 </div>
 
-                <div className="slide-in-right flex flex-col self-end items-end border border-gray-50 shadow-xs rounded-md gap-1 w-full max-w-7/8">
-                    <h1 className="text-2xl px-1">Who Made this Site?</h1>
-                    <p className="text-lg px-1">
-                        BuddinBio is designed and created by Zhuo Biao Cai, a former biology teacher from NYC. In 2019, Zhuo graduated with a BA in Biology and an initial grades 7-12
-                        biology teaching certification from Vassar College. He went on to teach math and biology in NYC before discovering an interest in computer programming. He eventually pursued a
-                        Master's study in computer technology at the University of Pennsylvania. Passionate about the intersection of educational technology, Zhuo designed this site as a test preparation
-                        tool for the NYS Biology Regents exam.
+                <div className="self-center rounded-md max-w-7/8">
+                    <p className="text-lg">
+                        BuddinBio is a practice playground for people to review and apply biology concepts aligned to the New York State Life Science curriculum.
+                        Specifically designed for students, this website's main goal is to help students prepare for the NYS Biology Regents exam. Students can review fundamental
+                        biology concepts at their own time and at their own pace.
                     </p>
                 </div>
 
-                <div className="slide-in-left flex flex-col self-start border border-gray-50 shadow-xs rounded-md gap-1 w-full max-w-7/8">
-                    <h1 className="text-2xl px-1">Disclaimer</h1>
-                    <p className="text-lg px-1">
+                <div className="self-center rounded-md max-w-7/8">
+                    <h1 className="text-xl text-gray-500 font-bold my-2">TYPES OF QUESTIONS</h1>
+                    <div role="group" className="flex flex-col gap-3">
+                        <p className="text-lg">
+                            BuddinBio has two types of questions: general review questions and cluster questions.                 
+                        </p>
+
+                        <h1 className="text-lg text-gray-500 font-bold">General Review Questions</h1>
+                        <p className="text-lg">
+                            General review questions are multiple-choice questions meant to practice recall of essential biology concepts. You likely saw an example on the home page. 
+                            These are typically easier questions that help students gain sufficient biology knowledge for the cluster questions.
+                        </p>
+
+                        <h1 className="text-lg text-gray-500 font-bold">Cluster Questions</h1>
+                        <p className="text-lg">
+                            Cluster questions are designed to resemble those from the New York State Biology Regents exam. The exam is made up of sections called clusters. Each 
+                            cluster is focused on a specific phenomenon in the real-world, and students learn about the phenomenon based on the given reading passages, diagrams, 
+                            and/or images. Students need to connect the provided information to biology concepts to answer the questions correctly - a task that requires 
+                            deep understanding of biology, meticulous reading skills, and an anlytical mindset.
+                        </p>
+
+                        <h1 className="text-lg text-gray-500 font-bold">Note about the Questions</h1>
+                        <p className="text-lg">
+                            The questions on BuddinBio are generated with the help of large language models - what many people commonly refer to as AI. The cluster questions 
+                            on BuddinBio are an attempt to mimic the actual exam style. Keep in mind that the questions are generated by AI and may contain false information.
+                        </p>
+                    </div>
+
+                </div>
+
+                <div className="flex flex-col self-center border border-amber-800 rounded-md bg-lightyellow gap-3 max-w-3/4 px-10 py-5">
+                    <h1 className="text-lg font-semibold text-amber-800">DISCLAIMER</h1>
+                    <p className="text-md text-amber-900">
                         This website is an independent educational resource created to help students prepare for the NYS Biology Regents exam. It is <strong>not affiliated with, endorsed by, or sponsored by</strong> any state education department, school district, or government agency.
                         The practice questions and materials provided are <strong>unofficial</strong> and are not actual exam questions. Although they may reflect general exam concepts and formats, they may not exactly match the official exam.
                         Use of this website does not guarantee any specific exam results. All trademarks and exam names are the property of their respective owners and are used for descriptive purposes only.
@@ -66,7 +69,6 @@ export default function About() {
 
             </div>
 
-            <div className="flex-1"></div>
             <Footer />
         </div>
     )
