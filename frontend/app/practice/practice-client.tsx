@@ -93,8 +93,13 @@ export default function PracticeClient() {
 
         fetchCountDoc()
 
-        // set up object in session storage to store which questions are answered correctly
-        sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(INITIAL_PERFORMANCE_RECORDS, null))
+        // upon loading, find which questions have been answered correctly
+        const performance = sessionStorage.getItem(REVIEW_PERFORMANCE_STORAGE_NAME)
+        if (performance === null) {
+            sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(INITIAL_PERFORMANCE_RECORDS, null))
+        } else {
+            setPerformance(JSON.parse(performance))
+        }
 
     }, [])
 
