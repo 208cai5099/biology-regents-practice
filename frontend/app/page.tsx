@@ -1,33 +1,36 @@
 "use client"
 
-import { Footer } from "@/components/ui/footer";
+import Footer from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
 import { useEffect, useRef } from "react";
 import MultipleChoiceCard from "@/components/ui/multiple-choice";
 import Image from "next/image"
 import { MultipleChoiceQuestion } from "./types";
+import Link from "next/link";
 
-const sampleQuestion: MultipleChoiceQuestion = {
+const SAMPLE_QUESTION: MultipleChoiceQuestion = {
   unitName: "Biochemistry",
   questionNumber: 1,
-  question: "Why is the three-dimensional shape of an enzyme so important to its function?",
-  correctAnswer: "The shape of the active site must match the specific substrate for the enzyme to catalyze the reaction",
+  question: "Which equation correctly models the process of photosynthesis?",
+  correctAnswer: "Sunlight + Water + Carbon Dioxide -> Glucose + Oxygen",
   wrongChoices: [
-    "It allows the enzyme to dissolve more easily in the cytoplasm",
-    "It determines the color of the enzyme so cells can identify it",
-    "It helps the enzyme travel faster through the bloodstream"
+    "Glucose + Oxygen -> Sunlight + Water + Carbon Dioxide",
+    "Sunlight + Carbon Dioxide -> Glucose + Oxygen",
+    "Sunlight + Water + Oxygen -> Glucose + Carbon Dioxide"
   ]
 }
 
-export default function Home() {
+const IMG_PATHS = {
+    "Biochemistry": "test_tube.svg",
+    "Ecology": "clover.svg",
+    "Evolution": "bird.svg",
+    "Genetics": "dna.svg",
+    "Homeostasis": "person.svg",
+    "Reproduction": "baby.svg",
+    "The Carbon Cycle":"rock.svg"
+}
 
-  // need to update
-  const IMG_PATHS: string[] = [
-    "notes.svg",
-    "brain.svg",
-    "thinking.svg",
-    "test.svg" 
-  ]
+export default function Home() {
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -60,44 +63,48 @@ export default function Home() {
       <div className="flex flex-col flex-1 items-center mt-5 gap-5">
 
         <div className="flex flex-col text-center gap-3">
-          <h1 className="text-3xl">Practice for the NYS Biology Regents</h1>
-          <h2 className="text-xl">Review. Reinforce. Repeat.</h2>
+          <h1 className="text-4xl font-semibold">Master biology,</h1>
+          <h1 className="text-4xl font-semibold">one question at a time</h1>
+          <h2 className="text-2xl">Prepare for the NYS Biology Regents exam</h2>
         </div>
 
-        <div className="w-full max-w-9/10 relative h-[100px] overflow-hidden mt-5 mask-l-from-97% mask-l-to-100% mask-r-from-97% mask-r-to-100%">
-            {[...IMG_PATHS].map((path, idx) => {
+        <div className="w-full max-w-9/10 relative h-[150px] overflow-hidden mt-5 mask-l-from-97% mask-l-to-100% mask-r-from-97% mask-r-to-100%">
+            {Object.entries(IMG_PATHS).map(([unit, path], idx) => {
 
-              const delay = 30 / IMG_PATHS.length * (IMG_PATHS.length - (idx + 1)) * -1
+              const imageCount = Object.keys(IMG_PATHS).length
+
+              const delay = 30 / imageCount * (imageCount - (idx + 1)) * -1
               return (
-                <Image
-                  key={idx}
-                  src={path}
-                  width={100}
-                  height={100}
-                  className="absolute rounded-md marquee-animate"
-                  style={{animationDelay: `${delay}s`, height: "auto"}}
-                  alt={`image of ${path.replace(".svg", "")}`}
+                <div
+                    key={idx}
+                    className="absolute rounded-md marquee-animate text-center font-semibold"
+                    style={{animationDelay: `${delay}s`, width: "100px", height: "100px"}}
                 >
-                </Image>
+                  <h3>{unit}</h3>
+                  <Image
+                    src={path}
+                    width={100}
+                    height={100}
+                    alt={`image of ${path.replace(".svg", "")}`}
+                  >
+                  </Image>
+                </div>
               )
             }
             )}
         </div>
 
-        <div className="flex flex-col self-stretch mx-5 mt-5" ref={containerRef}>
+        <Link href="/practice" className="w-[200px] max-h-[30px] border border-gray-300 text-lg text-center font-semibold rounded-xl bg-wallpaper hover:bg-deepgreen active:bg-green-800">
+            Start Studying
+        </Link>
 
-          <div className="flex flex-col md:flex-row justify-between">
-            <div className="slide-in-left flex flex-col justify-center items-center rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
-                <h1 className="text-2xl px-1">Essential Biology Knowledge</h1>
-                <p className="text-lg text-center px-1">
-                    Master major biology concepts, one question at a time.
-                </p>
-            </div>
+        <p className="text-lg font-bold mt-10">
+          Here's a sample question
+        </p>
 
-            <div className="slide-in-right flex flex-col justify-center items-center  rounded-md gap-1 w-full md:max-w-1/2" style={{animationDelay: "1s"}}>
-              <MultipleChoiceCard question={sampleQuestion} onSelectAnswer={(chosenAnswer: string) => {}}/>
-            </div>
-          </div>
+
+        <div className="w-full md:w-1/2 flex justify-center">
+          <MultipleChoiceCard question={SAMPLE_QUESTION} onSelectAnswer={(chosenAnswer: string) => {}}/>
         </div>
 
 

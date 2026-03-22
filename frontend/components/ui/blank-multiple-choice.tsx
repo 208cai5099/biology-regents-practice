@@ -1,6 +1,3 @@
-const SKELETON_BACKGROUND_GRADIENT = "linear-gradient(90deg, #c8c8c8 25%, #ebebeb 50%, #c8c8c8 75%)"
-const SKELETON_BACKGROUND_SIZE = "200% 100%"
-
 export default function BlankMultipleChoiceCard() {
 
     return (
@@ -8,20 +5,14 @@ export default function BlankMultipleChoiceCard() {
             <h1 className="text-xl text-center font-bold">Select a unit and question to get started</h1>
 
             <div                                                                                                                                        
-                className="h-[100px] w-full animate-shimmer rounded-xl"
-                style={{                                                        
-                    background: SKELETON_BACKGROUND_GRADIENT,                                                        
-                    backgroundSize: SKELETON_BACKGROUND_SIZE                                              
-                }}                                                                                                                                      
+                className="h-[100px] w-full bg-gray-200 rounded-xl"                                                                                                                                    
             />
 
             {Array.from({length: 4}).map((_, idx) => {
                 return (
                     <div
-                        className="self-start h-[20px] animate-shimmer rounded-xl"
+                        className="self-start h-[20px] bg-gray-200 rounded-xl"
                         style={{
-                            background: SKELETON_BACKGROUND_GRADIENT,
-                            backgroundSize: SKELETON_BACKGROUND_SIZE,
                             width: `${90 - 5 * idx}%`
                         }}
                         key={`line-${idx}`}

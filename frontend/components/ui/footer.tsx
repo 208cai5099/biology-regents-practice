@@ -1,9 +1,7 @@
-import Link from "next/link"
-
-function Footer() {
+export default function Footer() {
 
     return (
-        <footer className="flex flex-col items-center w-full bg-wallpaper mt-10 mx-5">
+        <footer className="flex flex-col justify-center items-center text-center bg-wallpaper mt-10">
 
             <p className="text-sm italic">
                 This website is not affiliated with the New York State Education Department or any educational organization.
@@ -21,5 +19,3 @@ function Footer() {
     )
 
 }
-
-export {Footer}

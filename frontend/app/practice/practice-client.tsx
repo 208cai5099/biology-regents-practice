@@ -29,6 +29,16 @@ const EMPTY_COUNTS = {
     "The Carbon Cycle": 0
 }
 
+const INITIAL_PERFORMANCE_RECORDS = {
+    "Biochemistry": [],
+    "Ecology and Human Impacts on Ecosystems": [],
+    "Evolution": [],
+    "Genetics": [],
+    "Organism Organization and Homeostasis": [],
+    "Reproduction": [],
+    "The Carbon Cycle": []
+}
+
 const BLANK_QUESTION: MultipleChoiceQuestion = {
     unitName: "",
     questionNumber: -1,
@@ -54,22 +64,31 @@ export default function PracticeClient() {
     const [questionCounts, setQuestionCounts] = useState<Record<string, number>>(EMPTY_COUNTS)
     const [chosenQuestion, setChosenQuestion] = useState<MultipleChoiceQuestion>(BLANK_QUESTION)
     const [chosenUnit, setChosenUnit] = useState<UnitNames>("")
+    const [performance, setPerformance] = useState<Record<string, number[]>>(INITIAL_PERFORMANCE_RECORDS)
 
     const handleQuestionFetch = async(unit: UnitNames, questionNumber: number) => {
         const questionDoc = await fetchFirestoreDoc(`practice_questions/review_questions/${unit}/${unit}_${questionNumber}`) as MultipleChoiceQuestion
         setChosenQuestion(questionDoc)
     }
 
+    const handleSelectUnit = (unit: UnitNames) => {
+        setChosenUnit(unit)
+        setChosenQuestion(BLANK_QUESTION)
+    }
+
     const handleSubmittedAnswer = (chosenAnswer: string) => {
 
-        const questionNumber = chosenQuestion["questionNumber"]
-        const result = chosenQuestion["correctAnswer"] === chosenAnswer
-        const performance = sessionStorage.getItem(REVIEW_PERFORMANCE_STORAGE_NAME)
-        if (result && performance) {
-            const performanceJSON = JSON.parse(performance)
-            if (!performanceJSON[chosenUnit].includes(questionNumber)) {
-                performanceJSON[chosenUnit].push(questionNumber)
-                sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(performanceJSON, null))
+        if (chosenUnit === chosenQuestion["unitName"]) {
+            const questionNumber = chosenQuestion["questionNumber"]
+            const result = chosenQuestion["correctAnswer"] === chosenAnswer
+            const performance = sessionStorage.getItem(REVIEW_PERFORMANCE_STORAGE_NAME)
+            if (result && performance) {
+                const performanceJSON = JSON.parse(performance)
+                if (!performanceJSON[chosenUnit].includes(questionNumber)) {
+                    performanceJSON[chosenUnit].push(questionNumber)
+                    sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(performanceJSON, null))
+                    setPerformance(performanceJSON)
+                }
             }
         }
 
@@ -85,22 +104,16 @@ export default function PracticeClient() {
         fetchCountDoc()
 
         // set up object in session storage to store which questions are answered correctly
-        const initialPerformance: Record<string, number[]> = {}
-        for (const unit of ALL_UNITS) {
-            initialPerformance[unit] = []
-        }
-        sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(initialPerformance, null))
+        sessionStorage.setItem(REVIEW_PERFORMANCE_STORAGE_NAME, JSON.stringify(INITIAL_PERFORMANCE_RECORDS, null))
 
     }, [])
-
-
 
     return (
         <div className="flex flex-col md:flex-row mt-5 gap-10">
 
             <div className="flex flex-col self-center md:self-start md:ml-10 w-8/10 md:w-1/4">
-                <UnitMenu onSelectUnit={setChosenUnit} />
-                <QuestionMenu counts={questionCounts} unit={chosenUnit} onSelectQuestion={handleQuestionFetch}/>
+                <UnitMenu onSelectUnit={handleSelectUnit} />
+                <QuestionMenu counts={questionCounts} unit={chosenUnit} onSelectQuestion={handleQuestionFetch} performanceRecords={performance}/>
             </div>
             
             <div className="flex flex-col flex-1 h-screen justify-start items-center">

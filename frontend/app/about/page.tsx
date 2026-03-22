@@ -1,17 +1,17 @@
-import { Footer } from "@/components/ui/footer";
+import Footer from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
 
 export default function About() {
    
     return (
-        <div className="flex flex-col w-full overflow-hidden">
+        <div className="flex flex-col w-full bg-wallpaper overflow-hidden">
             <NavBar />
 
             <div className="flex flex-col m-5 gap-5">
 
                 <div className="flex flex-row self-center font-bold">
                     <h1 className="text-3xl">Welcome to Buddin</h1>
-                    <h1 className="text-3xl text-darkestgreen">Bio!</h1>
+                    <h1 className="text-3xl text-deepgreen">Bio!</h1>
                 </div>
 
                 <div className="self-center text-center w-8/10">
@@ -41,7 +41,7 @@ export default function About() {
                             These are typically easier questions that help students gain sufficient biology knowledge for the cluster questions.
                         </p>
 
-                        <h1 className="text-lg text-gray-500 font-bold">Cluster Questions</h1>
+                        <h1 className="text-lg text-gray-500 font-bold">Cluster Questions (Coming Soon)</h1>
                         <p className="text-lg">
                             Cluster questions are designed to resemble those from the New York State Biology Regents exam. The exam is made up of sections called clusters. Each 
                             cluster is focused on a specific phenomenon in the real-world, and students learn about the phenomenon based on the given reading passages, diagrams, 
@@ -58,9 +58,9 @@ export default function About() {
 
                 </div>
 
-                <div className="flex flex-col self-center border border-amber-800 rounded-md bg-lightyellow gap-3 max-w-3/4 px-10 py-5">
-                    <h1 className="text-lg font-semibold text-amber-800">DISCLAIMER</h1>
-                    <p className="text-md text-amber-900">
+                <div className="flex flex-col self-center border border-amber-800 rounded-md bg-murkyyellow gap-3 max-w-3/4 px-10 py-5">
+                    <h1 className="text-lg font-semibold text-murkypurple">DISCLAIMER</h1>
+                    <p className="text-md text-murkypurple">
                         This website is an independent educational resource created to help students prepare for the NYS Biology Regents exam. It is <strong>not affiliated with, endorsed by, or sponsored by</strong> any state education department, school district, or government agency.
                         The practice questions and materials provided are <strong>unofficial</strong> and are not actual exam questions. Although they may reflect general exam concepts and formats, they may not exactly match the official exam.
                         Use of this website does not guarantee any specific exam results. All trademarks and exam names are the property of their respective owners and are used for descriptive purposes only.

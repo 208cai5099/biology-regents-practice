@@ -14,7 +14,7 @@ const IMG_PATHS = {
 }
 
 interface UnitMenuProps {
-    onSelectUnit: Dispatch<SetStateAction<UnitNames>>
+    onSelectUnit: (unit: UnitNames) => void
 }
 
 export default function UnitMenu({onSelectUnit}: UnitMenuProps){

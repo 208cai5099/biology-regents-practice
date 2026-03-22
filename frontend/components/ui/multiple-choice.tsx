@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Button } from "./button"
 import { MultipleChoiceQuestion } from "@/app/types"
 
-const CORRECT_ANSWER_SHADOW = "#A8D86E"
+const CORRECT_ANSWER_SHADOW = "#D0E8C2"
 const CORRECT_ANSWER_COLOR = "#2A6E3F"
 const BLACK_COLOR = "#000"
 
@@ -64,7 +64,10 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                         return (
                             <div
                                 key={`choice-${idx + 1}`}
-                                className="flex flex-row w-full gap-2"
+                                className="flex flex-row w-full gap-2 p-2 border border-gray-200 rounded-md"
+                                style={{
+                                    background: isSubmitted && choice === question["correctAnswer"] ? CORRECT_ANSWER_SHADOW : ""
+                                }}
                             >
                                 <input
                                     type="checkbox" 
@@ -76,6 +79,7 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                                     className={`accent-black`}
                                 />
                                 <label 
+                                    className={`${!isSubmitted ? "cursor-pointer" : ""}`}
                                     htmlFor={`choice-${idx + 1}`}
                                     style={{
                                         color: handleTextColor(choice)
@@ -89,8 +93,11 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                 }
             </div>
 
-            <Button 
-                className="w-3/10 self-center cursor-pointer text-white bg-deepgreen active:bg-deepgreen/50"
+            <button 
+                className="w-3/10 h-[30px] self-center cursor-pointer text-center text-white rounded-md bg-deepgreen active:bg-deepgreen/50 disabled:opacity-50"
+                style={{
+                    pointerEvents: isSubmitted || chosenChoice === "" ? "none" : "auto"
+                }}
                 disabled={isSubmitted || chosenChoice === ""}
                 onClick={async() => {
                     if (chosenChoice !== question["correctAnswer"]) setIsWrong(true)
@@ -99,7 +106,7 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                 }}
             >
                 Submit
-            </Button>
+            </button>
 
         </div>
     )

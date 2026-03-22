@@ -4,9 +4,9 @@
 
  @theme {                                                                                                                                    
     --color-wallpaper: #FFF;                                                                                                                 
-    --color-deepgreen: #609C63;
-    --color-darkestgreen: #4E8451;  
-    --color-lightyellow: #FEFCEA;                                                                                                  
+    --color-deepgreen: #37753B;
+    --color-murkyyellow: #DACD82;          
+    --color-murkypurple: #7D2B54;                                                                                        
   }    
 
 @keyframes slide-in-left {

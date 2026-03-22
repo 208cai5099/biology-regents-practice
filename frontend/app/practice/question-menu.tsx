@@ -1,17 +1,29 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { UnitNames } from "@/app/types"
 
 interface QuestionMenuProps {
     counts: Record<string, number>,
     unit: UnitNames,
-    onSelectQuestion: (unit: UnitNames, questionNumber: number) => Promise<void> 
+    onSelectQuestion: (unit: UnitNames, questionNumber: number) => Promise<void> ,
+    performanceRecords: Record<string, number[]>
 }
 
-export default function QuestionMenu({counts, unit, onSelectQuestion}: QuestionMenuProps) {
+const CORRECT_BADGE_COLOR = "#37753B"
+const CORRECT_BACKGROUND_COLOR = "#D0E8C2"
+
+export default function QuestionMenu({counts, unit, onSelectQuestion, performanceRecords}: QuestionMenuProps) {
 
     const [chosenQuestionNumber, setChosenQuestionNumber] = useState(-1)
+
+    const checkPeformanceRecords = (unit: UnitNames, questionNumber: number) => {
+        return performanceRecords[unit].includes(questionNumber)
+    }
+
+    useEffect(() => {
+        setChosenQuestionNumber(-1)
+    }, [unit])
 
     return (
         <div className="flex flex-col max-h-[300px] md:max-h-screen w-full overflow-hidden">    
@@ -26,11 +38,19 @@ export default function QuestionMenu({counts, unit, onSelectQuestion}: QuestionM
                                 onSelectQuestion(unit, idx + 1)
                                 setChosenQuestionNumber(idx + 1)
                             }}
+                            style={{
+                                background: checkPeformanceRecords(unit, idx + 1) ? CORRECT_BACKGROUND_COLOR : "" 
+                            }}
                             disabled={idx + 1 === chosenQuestionNumber}
                             aria-label={`Get question ${idx + 1}`}
                         >
                             <div className="absolute bottom-1 left-2 ml-2">
-                                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-black text-white text-[11px] font-bold mr-2 shrink-0">
+                                <span 
+                                    className="inline-flex items-center justify-center w-5 h-5 rounded-full text-white text-[11px] font-bold mr-2 shrink-0"
+                                    style={{
+                                        background: checkPeformanceRecords(unit, idx + 1) ? CORRECT_BADGE_COLOR : "black" 
+                                    }}
+                                >
                                     {idx + 1}
                                 </span>
                             </div>
