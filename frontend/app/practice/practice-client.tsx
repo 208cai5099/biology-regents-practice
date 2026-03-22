@@ -9,16 +9,6 @@ import MultipleChoiceCard from "@/components/ui/multiple-choice"
 import BlankMultipleChoiceCard from "@/components/ui/blank-multiple-choice"
 import UnitMenu from "./unit-menu"
 
-const ALL_UNITS: UnitNames[] = [
-    "Biochemistry",
-    "Ecology and Human Impacts on Ecosystems",
-    "Evolution",
-    "Genetics",
-    "Organism Organization and Homeostasis",
-    "Reproduction",
-    "The Carbon Cycle"
-]
-
 const EMPTY_COUNTS = {
     "Biochemistry": 0,
     "Ecology and Human Impacts on Ecosystems": 0,

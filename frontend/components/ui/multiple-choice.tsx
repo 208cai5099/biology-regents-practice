@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { Button } from "./button"
 import { MultipleChoiceQuestion } from "@/app/types"
 
 const CORRECT_ANSWER_SHADOW = "#D0E8C2"

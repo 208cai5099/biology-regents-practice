@@ -1,17 +1,16 @@
-import { Button } from "./button"
 import Link from "next/link"
 
 function NavBar() {
 
     return (
         <div className="sticky top-0 w-full z-50 flex flex-row justify-between items-center h-15 shadow-sm text-white bg-black">
-            <div>
-                <Button className="gap-0 p-0">
-                    <Link href="/">
-                        <img src="/buddinbio.svg" className="h-13 w-auto"></img>
-                    </Link>
-                </Button>
-            </div>
+                <Link 
+                    href="/"
+                    className="flex flex-row text-[25px] font-bold ml-5"
+                >
+                    <p>Buddin</p>
+                    <p className="text-deepgreen">Bio</p>
+                </Link>
             <div className="flex flex-row gap-5 mr-3">
                 <Link href="/practice" className="relative group text-lg font-bold hover:text-deepgreen text-white">
                     Practice

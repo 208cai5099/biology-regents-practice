@@ -1,6 +1,5 @@
 import Image from "next/image"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dispatch, SetStateAction } from "react"
 import { UnitNames } from "../types"
 
 const IMG_PATHS = {

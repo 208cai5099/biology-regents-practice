@@ -94,7 +94,7 @@ export default function Home() {
             )}
         </div>
 
-        <Link href="/practice" className="w-[200px] max-h-[30px] border border-gray-300 text-lg text-center font-semibold rounded-xl bg-wallpaper hover:bg-deepgreen active:bg-green-800">
+        <Link href="/practice" className="w-[200px] max-h-[30px] border border-gray-300 text-lg text-center font-semibold rounded-xl bg-wallpaper hover:bg-deepgreen hover:text-white active:bg-green-800">
             Start Studying
         </Link>
 
