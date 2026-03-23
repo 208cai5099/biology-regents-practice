@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import { Cluster, PhenomenaList, UnitNames, ScienceStandard, Unit, MCQuestion } from "./types.js";
 import { db } from "./setup.js";
 import { MCQuestionSchema } from "./question-generation/review-generator.js";
+import { EntireClusterSchema } from "./question-generation/cluster-generator.js";
 import { z } from "zod"
 
 const addStandard = async(standard: ScienceStandard) => {
@@ -95,3 +96,20 @@ const fetchReviewQuestions = async(units: UnitNames[]) => {
     throw error
   }
 }
+
+const fetchOfficialClusters = async() => {
+
+  try {
+
+    const clusterList: z.infer<typeof EntireClusterSchema>[] = []
+    const collectionRef = db.collection("official_clusters")
+    const snapshot = await collectionRef.get()
+    snapshot.forEach(doc => clusterList.push(doc.data() as z.infer<typeof EntireClusterSchema>))
+
+  } catch (error) {
+    throw error
+  }
+
+}
+
+export { addStandard, addCluster, addReviewQuestions, addUnit, fetchOfficialClusters, fetchReviewQuestions }
