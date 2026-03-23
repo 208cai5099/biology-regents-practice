@@ -119,6 +119,32 @@ export class ClusterGenerator {
 
   }
 
+  private formatTableData = (cluster: any) => {
+
+    for (const section of cluster["clusterSectionArray"]) {
+      if (section["sectionType"] === "figure") {
+        const sectionNumber = section["sectionNumber"]
+        const figureDetails = section["sectionObject"]
+        const figureColumns = figureDetails["figureColumnNames"] as string[]
+        const figureRows = figureDetails["figureRowData"] as (string | number)[][]
+        if (figureColumns && figureRows && figureColumns.length === figureRows[0].length) {
+          let reformattedRows: Record<string, Record<string, (string | number)>> = {}
+          for (let rowNum = 0; rowNum < figureRows.length; rowNum++) {
+            const currentRow = figureRows[rowNum]
+            reformattedRows[rowNum.toString()] = Object.fromEntries(figureColumns.map((col, index) => [col, currentRow[index]]))
+          }
+
+          section["sectionObject"]["figureRowData"] = reformattedRows
+          cluster["clusterSectionArray"][sectionNumber - 1] = section
+        }
+
+      }
+    }
+
+    return cluster
+
+  }
+
   generate = async(userPromptTemplate: string, phenomenon: string, targetStandards: string[]) => {
 
     try {
@@ -159,7 +185,12 @@ export class ClusterGenerator {
         throw new Error("Error: no text blocks in response")
       }
 
-      return this.outputConfig.parse(JSON.parse(textBlock.text)) as z.infer<typeof EntireClusterSchema>
+      const newCluster = this.outputConfig.parse(JSON.parse(textBlock.text)) as any
+      
+      const formattedCluster = this.formatTableData(newCluster)
+
+      return formattedCluster
+
 
     } catch (error) {
 
