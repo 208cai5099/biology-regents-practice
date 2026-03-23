@@ -9,7 +9,7 @@ export const TitleSchema = z.object({
 })
 
 export const TextSchema = z.object({
-  text: z.string()
+  sentencesArray: z.array(z.string()).min(1).max(4)
 })
 
 export const MultipleChoiceQuestionSchema = z.object({
@@ -24,15 +24,16 @@ export const ConstructedResponseQuestionSchema = z.object({
   questionType: z.literal("constructed-response"),
   questionNumber: z.number(),
   questionWording: z.string(),
-  correctAnswer: z.string()
+  acceptableAnswers: z.array(z.string()).min(2).max(3)
 })
 
 export const FigureSchema = z.object({
-  figureType: z.enum(["image", "table", "chart", "graph"]),
+  figureType: z.enum(["image", "table", "bar graph", "line graph", "boxplot", "scatterplot"]),
   figureNumber: z.number(),
   figureTitle: z.string(),
   figureDescription: z.string(),
-  figureRows: z.array(z.array(z.string())).optional()
+  figureColumnNames: z.array(z.string()).optional(),
+  figureRowData: z.array(z.array(z.union([z.string(), z.number()]))).optional()
 })
 
 export const ClusterSectionSchema = z.object({

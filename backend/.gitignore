@@ -1,6 +1,4 @@
 *.pdf
-/src/firebase/curriculum_materials/exam_materials/*.json
-/src/firebase/curriculum_materials/exam_materials/*.txt
 .venv
 node_modules
 firebase_key.json
@@ -10,3 +8,4 @@ firebase_key.json
 /src/firebase/question-generation/main.ts
 /src/firebase/question-generation/write-doc.ts
 /src/firebase/query-firestore.ts
+/src/firebase/curriculum-materials/exam-materials/*.json
