@@ -6,8 +6,9 @@
     --color-wallpaper: #FFF;                                                                                                                 
     --color-deepgreen: #37753B;
     --color-murkyyellow: #DACD82;          
-    --color-murkypurple: #7D2B54;                                                                                        
-  }    
+    --color-murkypurple: #7D2B54;  
+    --color-primary: #000;
+}    
 
 @keyframes slide-in-left {
   from {

@@ -124,6 +124,12 @@ const addPracticeClusters = async(clustersList: any[]) => {
             })
           }
 
+          identifiersDoc["Total"].push({
+            clusterNumber: clusterNumber,
+            clusterTitle: clusterTitle,
+            clusterRef: newClusterDocRef
+          })
+
           batch.set(newClusterDocRef, cluster)
 
         }

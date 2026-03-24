@@ -1,15 +1,15 @@
 'use client'
 
 import { useState, useEffect } from "react"
-import { MultipleChoiceQuestion } from "@/app/types"
+import { MultipleChoice } from "@/app/types"
 
 const CORRECT_ANSWER_SHADOW = "#D0E8C2"
 const CORRECT_ANSWER_COLOR = "#2A6E3F"
 const BLACK_COLOR = "#000"
 
 interface MultipleChoiceCardProps {
-    question: MultipleChoiceQuestion
-    onSelectAnswer: (chosenAnswer: string) => void
+    question: MultipleChoice
+    onSelectAnswer: (submittedAnswer: string, questionNumber: number) => void
 }
 
 function shuffleArray<T>(arr: T[]): T[] {
@@ -101,7 +101,7 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                 onClick={async() => {
                     if (chosenChoice !== question["correctAnswer"]) setIsWrong(true)
                     setIsSubmitted(true)
-                    onSelectAnswer(chosenChoice)
+                    onSelectAnswer(chosenChoice, question["questionNumber"])
                 }}
             >
                 Submit

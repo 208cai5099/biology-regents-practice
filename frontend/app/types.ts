@@ -1,10 +1,19 @@
-export interface MultipleChoiceQuestion {
+export interface MultipleChoice {
+  question: string,
+  wrongChoices: string[],
+  correctAnswer: string,
+  questionNumber: number
+}
+
+export interface ReviewMultipleChoiceQuestion {
     unitName: UnitNames,
     questionNumber: number,
     question: string,
     wrongChoices: string[],
     correctAnswer: string
 }
+
+export type ClusterSectionType = "title" | "text" | "multiple-choice" | "constructed-response" | "figure"
 
 export interface ClusterTitle {
   clusterTitle: string
@@ -17,7 +26,7 @@ export interface ClusterText {
 export interface ClusterMultipleChoiceQuestion {
   questionType: "multiple-choice",
   questionNumber: number,
-  questionWording: string,
+  question: string,
   wrongChoices: string[]
   correctAnswer: string
 }
@@ -29,8 +38,10 @@ export interface ClusterConstructedResponse {
   acceptableAnswers: string[]
 }
 
+export type FigureType = "image" | "table" | "bar graph" | "line graph" | "boxplot" | "scatterplot"
+
 export interface ClusterFigure {
-  figureType: "image" | "table" | "bar graph" | "line graph" | "boxplot" | "scatterplot",
+  figureType: FigureType,
   figureNumber: number,
   figureTitle: string,
   figureDescription: string,
@@ -38,10 +49,12 @@ export interface ClusterFigure {
   figureRowData?: Record<string, Record<string, string | number>>
 }
 
+export type ClusterSectionObject = ClusterTitle | ClusterText | ClusterMultipleChoiceQuestion | ClusterConstructedResponse | ClusterFigure
+
 export interface ClusterSection {
     sectionNumber: number,
-    sectionType: "title" | "text" | "multiple-choice" | "constructed-response" | "figure",
-    sectionObject: ClusterTitle | ClusterText | ClusterMultipleChoiceQuestion | ClusterConstructedResponse | ClusterFigure
+    sectionType: ClusterSectionType,
+    sectionObject: ClusterSectionObject
 }
 
 export interface Cluster {

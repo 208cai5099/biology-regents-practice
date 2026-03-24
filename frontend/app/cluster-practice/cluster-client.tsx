@@ -6,6 +6,8 @@ import { getFirestore, doc, getDoc } from "firebase/firestore"
 import type { UnitNames, Cluster } from "../types"
 import UnitMenu from "../../components/ui/unit-menu"
 import ClusterMenu from "./cluster-menu"
+import ClusterDisplay from "./display/cluster-display"
+import BlankMultipleChoiceCard from "@/components/ui/blank-multiple-choice"
 
 const fetchFirestoreDoc = async(docPath: string) => {
 
@@ -38,9 +40,14 @@ export default function ClusterClient() {
     const [clusterIdentifiers, setClusterIdentifiers] = useState(EMPTY_IDENTIFIERS)
     const [chosenUnit, setChosenUnit] = useState<UnitNames>("Biochemistry")
     const [chosenCluster, setChosenCluster] = useState(EMPTY_CLUSTER)
+    const [answerResponses, setAnswerResponses] = useState<Record<number, string>>({})
 
     const handleSelectUnit = (unit: UnitNames) => {
         setChosenUnit(unit)
+    }
+
+    const handleSubmittedAnswers = (submittedAnswer: string, questionNumber: number) => {
+        setAnswerResponses({...answerResponses, [questionNumber!]: submittedAnswer})
     }
 
     const fetchCluster = async(clusterRef: any) => {
@@ -67,14 +74,15 @@ export default function ClusterClient() {
     }, [])
 
     return (
-        <div className="flex flex-col md:flex-row mt-5 gap-10">
+        <div className="flex flex-col w-full md:flex-row mt-5 gap-10">
 
             <div className="flex flex-col self-center md:self-start md:ml-10 w-8/10 md:w-1/4">
                 <UnitMenu onSelectUnit={handleSelectUnit} />
                 <ClusterMenu availableClusters={clusterIdentifiers[chosenUnit]} unit={chosenUnit} selectCluster={fetchCluster}/>
             </div>
             
-            <div className="flex flex-col flex-1 h-screen justify-start items-center">
+            <div className="flex flex-col flex-1 min-h-screen w-full justify-start items-center">
+                {chosenCluster["clusterNumber"] !== -1 ? <ClusterDisplay cluster={chosenCluster} recordAnswers={handleSubmittedAnswers} /> : <BlankMultipleChoiceCard />}
             </div>
         </div>
     )

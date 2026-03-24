@@ -15,7 +15,7 @@ export const TextSchema = z.object({
 export const MultipleChoiceQuestionSchema = z.object({
   questionType: z.literal("multiple-choice"),
   questionNumber: z.number(),
-  questionWording: z.string(),
+  question: z.string(),
   wrongChoices: z.array(z.string()).length(3),
   correctAnswer: z.string()
 })
@@ -23,7 +23,7 @@ export const MultipleChoiceQuestionSchema = z.object({
 export const ConstructedResponseQuestionSchema = z.object({
   questionType: z.literal("constructed-response"),
   questionNumber: z.number(),
-  questionWording: z.string(),
+  question: z.string(),
   acceptableAnswers: z.array(z.string()).min(2).max(3)
 })
 
