@@ -47,6 +47,8 @@ export interface ClusterFigure {
   figureDescription: string,
   figureColumnNames?: string[],
   figureRowData?: Record<string, Record<string, string | number>>
+  xDataName?: string,
+  yDataNames?: string[]
 }
 
 export type ClusterSectionObject = ClusterTitle | ClusterText | ClusterMultipleChoiceQuestion | ClusterConstructedResponse | ClusterFigure

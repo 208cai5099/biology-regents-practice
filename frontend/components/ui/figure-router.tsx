@@ -1,5 +1,7 @@
 import { ClusterFigure } from "@/app/types"
 import DataTable from "./data-table"
+import BarGraph from "./bar-graph"
+import LineGraph from "./line-graph"
 
 interface FigureProps {
     figureSection: ClusterFigure
@@ -13,6 +15,12 @@ function getFigureComponent(figureSection: ClusterFigure) {
 
         case "image":
             return <p>[Image to be inserted]</p>
+
+        case "bar graph":
+            return <BarGraph figureSection={figureSection} />
+        
+        case "line graph":
+            return <LineGraph figureSection={figureSection}/>
         
         default:
             return (

@@ -1,6 +1,5 @@
 import Section from "./cluster-section";
-import Title from "./cluster-title";
-import { Cluster, ClusterSection, ClusterTitle } from "@/app/types"
+import { Cluster } from "@/app/types"
 
 interface ClusterDisplayProps {
     cluster: Cluster,
