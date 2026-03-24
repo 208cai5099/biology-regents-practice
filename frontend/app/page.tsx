@@ -5,10 +5,10 @@ import { NavBar } from "@/components/ui/navbar";
 import { useEffect, useRef } from "react";
 import MultipleChoiceCard from "@/components/ui/multiple-choice";
 import Image from "next/image"
-import { MultipleChoiceQuestion } from "./types";
+import { ReviewMultipleChoiceQuestion } from "./types";
 import Link from "next/link";
 
-const SAMPLE_QUESTION: MultipleChoiceQuestion = {
+const SAMPLE_QUESTION: ReviewMultipleChoiceQuestion = {
   unitName: "Biochemistry",
   questionNumber: 1,
   question: "Which equation correctly models the process of photosynthesis?",

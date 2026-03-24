@@ -28,12 +28,14 @@ export const ConstructedResponseQuestionSchema = z.object({
 })
 
 export const FigureSchema = z.object({
-  figureType: z.enum(["image", "table", "bar graph", "line graph", "boxplot", "scatterplot"]),
+  figureType: z.enum(["image", "table", "bar graph", "line graph"]),
   figureNumber: z.number(),
   figureTitle: z.string(),
   figureDescription: z.string(),
   figureColumnNames: z.array(z.string()).optional(),
-  figureRowData: z.array(z.array(z.union([z.string(), z.number()]))).optional()
+  figureRowData: z.array(z.array(z.union([z.string(), z.number()]))).optional(),
+  xDataName: z.string().optional(),
+  yDataNames: z.array(z.string()).optional()
 })
 
 export const ClusterSectionSchema = z.object({
