@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { UnitNames } from "../types"
+import { UnitNames } from "../../app/types"
 
 const IMG_PATHS = {
     "Biochemistry": "test_tube.svg",
@@ -12,6 +12,8 @@ const IMG_PATHS = {
     "The Carbon Cycle":"rock.svg"
 }
 
+const DEFAULT_UNIT: UnitNames = "Biochemistry"
+
 interface UnitMenuProps {
     onSelectUnit: (unit: UnitNames) => void
 }
@@ -21,6 +23,7 @@ export default function UnitMenu({onSelectUnit}: UnitMenuProps){
     return (
         <Select
             onValueChange={(val) => (onSelectUnit(val as UnitNames))}
+            defaultValue={DEFAULT_UNIT}
         >
             <SelectTrigger
                 className="w-full"

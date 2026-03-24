@@ -1,15 +1,15 @@
 'use client'
 
-import QuestionMenu from "@/app/practice/question-menu"
+import QuestionMenu from "@/app/review-practice/question-menu"
 import { useState, useEffect } from "react"
 import { firebaseApp } from "@/lib/utils"
 import { getFirestore, doc, getDoc } from "firebase/firestore"
 import type { MultipleChoiceQuestion, UnitNames } from "../types"
 import MultipleChoiceCard from "@/components/ui/multiple-choice"
 import BlankMultipleChoiceCard from "@/components/ui/blank-multiple-choice"
-import UnitMenu from "./unit-menu"
+import UnitMenu from "../../components/ui/unit-menu"
 
-const EMPTY_COUNTS = {
+const EMPTY_COUNTS: Record<UnitNames, number> = {
     "Biochemistry": 0,
     "Ecology and Human Impacts on Ecosystems": 0,
     "Evolution": 0,
@@ -19,7 +19,7 @@ const EMPTY_COUNTS = {
     "The Carbon Cycle": 0
 }
 
-const INITIAL_PERFORMANCE_RECORDS = {
+const INITIAL_PERFORMANCE_RECORDS: Record<UnitNames, number[]> = {
     "Biochemistry": [],
     "Ecology and Human Impacts on Ecosystems": [],
     "Evolution": [],
@@ -30,7 +30,7 @@ const INITIAL_PERFORMANCE_RECORDS = {
 }
 
 const BLANK_QUESTION: MultipleChoiceQuestion = {
-    unitName: "",
+    unitName: "Biochemistry",
     questionNumber: -1,
     question: "",
     wrongChoices: [],
@@ -49,11 +49,11 @@ const fetchFirestoreDoc = async(docPath: string) => {
 
 }
 
-export default function PracticeClient() {
+export default function ReviewClient() {
 
     const [questionCounts, setQuestionCounts] = useState<Record<string, number>>(EMPTY_COUNTS)
     const [chosenQuestion, setChosenQuestion] = useState<MultipleChoiceQuestion>(BLANK_QUESTION)
-    const [chosenUnit, setChosenUnit] = useState<UnitNames>("")
+    const [chosenUnit, setChosenUnit] = useState<UnitNames>("Biochemistry")
     const [performance, setPerformance] = useState<Record<string, number[]>>(INITIAL_PERFORMANCE_RECORDS)
 
     const handleQuestionFetch = async(unit: UnitNames, questionNumber: number) => {
@@ -112,7 +112,7 @@ export default function PracticeClient() {
             </div>
             
             <div className="flex flex-col flex-1 h-screen justify-start items-center">
-                {chosenQuestion["unitName"] !== "" ? <MultipleChoiceCard question={chosenQuestion} onSelectAnswer={handleSubmittedAnswer}/> : <BlankMultipleChoiceCard />}
+                {chosenQuestion["questionNumber"] !== -1 ? <MultipleChoiceCard question={chosenQuestion} onSelectAnswer={handleSubmittedAnswer}/> : <BlankMultipleChoiceCard />}
             </div>
         </div>
     )

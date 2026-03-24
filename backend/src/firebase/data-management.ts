@@ -29,13 +29,21 @@ const addUnit = async(unit: Unit) => {
 
 }
 
+const writeJSONFile = async(filepath: string, object: object) => {
+
+  try {
+    await fs.writeFile(filepath, JSON.stringify(object, null, 4), "utf-8")
+  } catch (error) {
+    throw error
+  }
+
+}
+
 const readJSONFile = async(filepath: string) => {
 
   try {
-    
     const docText = await fs.readFile(filepath, "utf-8")
     return JSON.parse(docText)
-
   } catch (error) {
     throw error
   }
@@ -74,22 +82,59 @@ const addReviewQuestions = async(questionsList: MCQuestion[]) => {
 
 }
 
-const addPracticeCluster = async(clustersList: z.infer<typeof EntireClusterSchema>[]) => {
+const addPracticeClusters = async(clustersList: any[]) => {
 
   try {
-    
-    const batch = db.batch()
-    for (const cluster of clustersList) {
-      const section = cluster["clusterSectionArray"].find((section) => section["sectionType"] === "title")
-      if (section !== undefined && "clusterTitle" in section["sectionObject"]) {
-        const clusterTitle = section["sectionObject"]["clusterTitle"]
-        const clusterTitleUnderscore = clusterTitle.replaceAll(" ", "_").toLowerCase()
-        const newClusterDocRef = db.collection("practice_clusters").doc(`practice_${clusterTitleUnderscore}`)
-        batch.set(newClusterDocRef, cluster)
+
+    // get the number of the practice clusters in each unit
+    const countsDocRef = db.collection("practice_clusters").doc("practice_clusters_counts")
+    const countsSnapshot = await countsDocRef.get()
+
+    // get the identifiers for the practice clusters in each unit
+    const identifiersDocRef = db.collection("practice_clusters").doc("practice_clusters_identifiers")
+    const identifiersSnapshot = await identifiersDocRef.get()
+
+    if (countsSnapshot.exists && identifiersSnapshot.exists) {
+      
+      const countsDoc = countsSnapshot.data() as Record<UnitNames | "Total", number>
+      const identifiersDoc = identifiersSnapshot.data() as Record<UnitNames | "Total", Record<string, any>[]>
+
+      const batch = db.batch()
+      for (const cluster of clustersList) {
+        
+        const clusterSections = cluster["clusterSectionArray"] as Record<string, any>[]
+        const titleSection = clusterSections.find((section) => section["sectionType"] === "title")
+        if (titleSection) {
+
+          const clusterTitle = titleSection["sectionObject"]["clusterTitle"]
+          const clusterID = "practice_" + clusterTitle.replaceAll(" ", "_").toLowerCase()
+          const newClusterDocRef = db.collection("practice_clusters").doc(clusterID)
+
+          countsDoc["Total"] += 1
+          const clusterNumber = countsDoc["Total"]
+          cluster["clusterNumber"] = clusterNumber
+
+          const unitArray = cluster["unitArray"] as UnitNames[]
+          for (const unit of unitArray) {
+            countsDoc[unit] += 1
+            identifiersDoc[unit].push({
+              clusterNumber: clusterNumber,
+              clusterTitle: clusterTitle,
+              clusterRef: newClusterDocRef
+            })
+          }
+
+          batch.set(newClusterDocRef, cluster)
+
+        }
+
       }
+      
+      batch.set(identifiersDocRef, identifiersDoc)
+      batch.set(countsDocRef, countsDoc)
+      await batch.commit()
     }
 
-    await batch.commit()
 
   } catch (error) {
     throw error
@@ -123,10 +168,30 @@ const fetchOfficialClusters = async() => {
 
   try {
 
-    const clusterList: z.infer<typeof EntireClusterSchema>[] = []
+    const clusterList: Cluster[] = []
     const collectionRef = db.collection("official_clusters")
     const snapshot = await collectionRef.get()
-    snapshot.forEach(doc => clusterList.push(doc.data() as z.infer<typeof EntireClusterSchema>))
+    snapshot.forEach(doc => clusterList.push(doc.data() as Cluster))
+    return clusterList
+
+  } catch (error) {
+    throw error
+  }
+
+}
+
+const fetchPracticeClusters = async() => {
+
+  try {
+
+    const clusterList: any[] = []
+    const collectionRef = db.collection("practice_clusters")
+    const snapshot = await collectionRef.get()
+    snapshot.forEach(doc => {
+      if (doc.id !== "practice_clusters_counts") {
+        clusterList.push(doc.data())
+      }
+    })
     return clusterList
 
   } catch (error) {
@@ -136,12 +201,14 @@ const fetchOfficialClusters = async() => {
 }
 
 export { 
+  writeJSONFile,
   readJSONFile,
   addStandard, 
   addCluster, 
   addReviewQuestions, 
   addUnit, 
-  addPracticeCluster,
+  addPracticeClusters,
   fetchOfficialClusters, 
-  fetchReviewQuestions 
+  fetchReviewQuestions ,
+  fetchPracticeClusters
 }
