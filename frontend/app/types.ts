@@ -34,7 +34,7 @@ export interface ClusterMultipleChoiceQuestion {
 export interface ClusterConstructedResponse {
   questionType: "constructed-response",
   questionNumber: number,
-  questionWording: string,
+  question: string,
   acceptableAnswers: string[]
 }
 
@@ -48,7 +48,9 @@ export interface ClusterFigure {
   figureColumnNames?: string[],
   figureRowData?: Record<string, Record<string, string | number>>
   xDataName?: string,
-  yDataNames?: string[]
+  yDataNames?: string[],
+  imageURL?: string,
+  imageAttribution?: string
 }
 
 export type ClusterSectionObject = ClusterTitle | ClusterText | ClusterMultipleChoiceQuestion | ClusterConstructedResponse | ClusterFigure

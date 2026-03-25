@@ -6,6 +6,9 @@ const BAR_GRAPH_COLORS = [
     "#AAAAAA",
     "#CCCCCC"
 ]
+
+const TICK_FONT_SIZE = 15
+
 interface BarGraphProps {
     figureSection: ClusterFigure
 }
@@ -33,8 +36,8 @@ function createBarGraph(xDataKey: string, yDataKeys: string[], rowData: Record<s
             data={graphData}
         >
           <CartesianGrid strokeDasharray="10 10" />
-            <XAxis dataKey={xDataKey} tick={{fill: "#000", fontSize: 20}}/>
-            <YAxis width="auto" tick={{fill: "#000", fontSize: 20}} />
+            <XAxis dataKey={xDataKey} label={{value: xDataKey, fill: "#000", position: "insideBottom", offset: -5, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}}/>
+            <YAxis width="auto" label={{value: yDataKeys[0], fill: "#000", position: "insideLeft", angle: -90, offset: 0, dy: 100, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}} />
             {yDataKeys.length > 1 ? <Legend verticalAlign="top" align="left" /> : <></>}
             {
                 yDataKeys.map((key, idx) => 
@@ -57,7 +60,7 @@ export default function BarGraph({figureSection}: BarGraphProps) {
         <div className="flex flex-col md:items-center w-full overflow-x-auto">
             {xDataKey && yDataKeys && rowData ? 
             <ResponsiveContainer
-                height={300}
+                height={350}
                 aspect={2}
             >
                 {createBarGraph(xDataKey, yDataKeys, rowData)}

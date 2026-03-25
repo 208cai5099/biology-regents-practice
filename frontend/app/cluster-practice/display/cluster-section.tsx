@@ -28,7 +28,11 @@ function getSectionComponent(clusterSection: ClusterSection, recordAnswers: (sub
             )
 
         case "constructed-response":
-            return <ConstructedResponse question={clusterSection["sectionObject"] as ClusterConstructedResponse}/>
+            return (
+                <div className="flex justify-center">
+                    <ConstructedResponse constructedResponseSection={clusterSection["sectionObject"] as ClusterConstructedResponse} onSelectAnswer={recordAnswers} />
+                </div>
+            )
 
         case "figure":
             return <FigureRouter figureSection={clusterSection["sectionObject"] as ClusterFigure} />

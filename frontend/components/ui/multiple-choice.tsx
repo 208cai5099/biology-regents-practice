@@ -47,15 +47,17 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
         return choice === question["correctAnswer"] ? CORRECT_ANSWER_COLOR : BLACK_COLOR
     }
 
+    const questionNumber = question["questionNumber"]
+
     return (
         <div
-            className={`flex flex-col justify-center rounded-2xl w-8/10 gap-y-5 p-5 ${isWrong ? " animate-shake" : ""}`}
+            className={`flex flex-col justify-center border rounded-2xl w-8/10 gap-y-5 p-5 ${isWrong ? " animate-shake" : ""}`}
             style={{
-                boxShadow: isSubmitted && chosenChoice === question["correctAnswer"] ? `0 0 5px 2px ${CORRECT_ANSWER_SHADOW}` : "0 0 1px 1px gray"
+                boxShadow: isSubmitted && chosenChoice === question["correctAnswer"] ? `0 0 5px 2px ${CORRECT_ANSWER_SHADOW}` : ""
             }}
         >
 
-            <p className="font-bold">{question["question"]}</p>
+            <p className="font-bold">{questionNumber > 0 ? `Question ${questionNumber}: ` : ""}{question["question"]}</p>
             
             <div role="group" className="flex flex-col w-full gap-5">
                 {
@@ -70,8 +72,8 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                             >
                                 <input
                                     type="checkbox" 
-                                    id={`choice-${idx + 1}`}
-                                    name={`choice-${idx + 1}`}
+                                    id={`question ${question["questionNumber"]} choice ${idx + 1}`}
+                                    name={`question ${question["questionNumber"]} choice ${idx + 1}`}
                                     onChange={() => handleChoice(choice)}
                                     disabled={isSubmitted}
                                     checked={choice === chosenChoice}
@@ -79,7 +81,7 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
                                 />
                                 <label 
                                     className={`${!isSubmitted ? "cursor-pointer" : ""}`}
-                                    htmlFor={`choice-${idx + 1}`}
+                                    htmlFor={`question ${question["questionNumber"]} choice ${idx + 1}`}
                                     style={{
                                         color: handleTextColor(choice)
                                     }}

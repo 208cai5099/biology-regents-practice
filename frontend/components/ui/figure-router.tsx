@@ -2,6 +2,7 @@ import { ClusterFigure } from "@/app/types"
 import DataTable from "./data-table"
 import BarGraph from "./bar-graph"
 import LineGraph from "./line-graph"
+import FigureImage from "./figure-image"
 
 interface FigureProps {
     figureSection: ClusterFigure
@@ -14,7 +15,7 @@ function getFigureComponent(figureSection: ClusterFigure) {
     switch (figureType) {
 
         case "image":
-            return <p>[Image to be inserted]</p>
+            return <FigureImage figureSection={figureSection}/>
 
         case "bar graph":
             return <BarGraph figureSection={figureSection} />
@@ -32,7 +33,7 @@ function getFigureComponent(figureSection: ClusterFigure) {
 
 export default function FigureRouter({figureSection}: FigureProps) {
     return (
-        <div className="flex flex-col mx-5 gap-5">
+        <div className="flex flex-col mx-5">
             <h1
                 className="text-lg font-semibold text-left"
             >

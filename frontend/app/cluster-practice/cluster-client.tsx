@@ -47,6 +47,7 @@ export default function ClusterClient() {
     }
 
     const handleSubmittedAnswers = (submittedAnswer: string, questionNumber: number) => {
+        console.log(submittedAnswer, questionNumber)
         setAnswerResponses({...answerResponses, [questionNumber!]: submittedAnswer})
     }
 
