@@ -9,7 +9,7 @@ const IMG_PATHS = {
     "Genetics": "dna.svg",
     "Organism Organization and Homeostasis": "person.svg",
     "Reproduction": "baby.svg",
-    "The Carbon Cycle":"rock.svg"
+    "The Carbon Cycle":"cycle.svg"
 }
 
 const DEFAULT_UNIT: UnitNames = "Biochemistry"

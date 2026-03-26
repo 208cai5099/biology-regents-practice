@@ -27,7 +27,7 @@ const IMG_PATHS = {
     "Genetics": "dna.svg",
     "Homeostasis": "person.svg",
     "Reproduction": "baby.svg",
-    "The Carbon Cycle":"rock.svg"
+    "Carbon Cycle":"cycle.svg"
 }
 
 export default function Home() {

@@ -24,9 +24,8 @@ function getFigureComponent(figureSection: ClusterFigure) {
             return <LineGraph figureSection={figureSection}/>
         
         default:
-            return (
-                <DataTable figureSection={figureSection} />
-            )
+            return <DataTable figureSection={figureSection} />
+            
     }
 
 } 
@@ -34,12 +33,6 @@ function getFigureComponent(figureSection: ClusterFigure) {
 export default function FigureRouter({figureSection}: FigureProps) {
     return (
         <div className="flex flex-col mx-5">
-            <h1
-                className="text-lg font-semibold text-left"
-            >
-                Figure {figureSection["figureNumber"]}: {figureSection["figureTitle"]}
-            </h1>
-
             {getFigureComponent(figureSection)}
             
         </div>

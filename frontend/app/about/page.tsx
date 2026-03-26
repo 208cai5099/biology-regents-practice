@@ -7,20 +7,18 @@ export default function About() {
         <div className="flex flex-col w-full bg-wallpaper overflow-hidden">
             <NavBar />
 
-            <div className="flex flex-col m-5 gap-5">
+            <div className="flex flex-col items-center m-5 gap-5">
 
-                <div className="flex flex-row self-center font-bold">
+                <div className="flex flex-rowfont-bold">
                     <h1 className="text-3xl">Welcome to Buddin</h1>
                     <h1 className="text-3xl text-deepgreen">Bio!</h1>
                 </div>
 
-                <div className="self-center text-center w-8/10">
-                    <p className="font-semibold text-lg">
-                        A simple and convenient study tool for the New York State Biology Regents
-                    </p>
-                </div>
+                <p className="font-semibold text-lg">
+                    A simple and convenient study tool for the New York State Biology Regents
+                </p>
 
-                <div className="self-center rounded-md max-w-7/8">
+                <div className="rounded-md max-w-7/8">
                     <p className="text-lg">
                         BuddinBio is a practice playground for people to review and apply biology concepts aligned to the New York State Life Science curriculum.
                         Specifically designed for students, this website's main goal is to help students prepare for the NYS Biology Regents exam. Students can review fundamental
@@ -28,7 +26,7 @@ export default function About() {
                     </p>
                 </div>
 
-                <div className="self-center rounded-md max-w-7/8">
+                <div className="rounded-md max-w-7/8">
                     <h1 className="text-xl text-gray-500 font-bold my-2">TYPES OF QUESTIONS</h1>
                     <div role="group" className="flex flex-col gap-3">
                         <p className="text-lg">
@@ -51,14 +49,15 @@ export default function About() {
 
                         <h1 className="text-lg text-gray-500 font-bold">Note about the Questions</h1>
                         <p className="text-lg">
-                            The questions on BuddinBio are generated with the help of large language models - what many people refer to as AI. Keep in mind that content created by 
-                            AI may contain false information.
+                            The questions on BuddinBio are generated with the help of large language models - what many people refer to as AI. The questions are created using a 
+                            strategy called prompt engineering. Prompt engineering is the process of formatting an input in a specific structure to get a desired output from an 
+                            AI model. Keep in mind that AI models can make mistakes.
                         </p>
                     </div>
 
                 </div>
 
-                <div className="flex flex-col self-center border border-amber-800 rounded-md bg-murkyyellow gap-3 max-w-9/10 md:max-w-3/4 p-5">
+                <div className="flex flex-col border border-amber-800 rounded-md bg-murkyyellow gap-3 max-w-9/10 md:max-w-3/4 p-5">
                     <h1 className="text-lg font-semibold text-murkypurple">DISCLAIMER</h1>
                     <p className="text-md text-murkypurple">
                         This website is an independent educational resource created to help students prepare for the NYS Biology Regents exam. It is <strong>not affiliated with, endorsed by, or sponsored by</strong> any state education department, school district, or government agency.

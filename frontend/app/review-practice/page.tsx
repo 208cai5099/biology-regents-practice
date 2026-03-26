@@ -4,7 +4,7 @@ import Footer from "@/components/ui/footer"
 
 export default function ReviewPractice() {
     return (
-        <div className="flex flex-col min-h-screen bg-wallpaper overflow-hidden">
+        <div className="flex flex-col min-h-screen w-full bg-wallpaper overflow-hidden">
             <NavBar />
             <ReviewClient />
             <Footer />

@@ -37,7 +37,7 @@ function createLineGraph(xDataKey: string, yDataKeys: string[], rowData: Record<
         >
           <CartesianGrid strokeDasharray="10 10" />
             <XAxis dataKey={xDataKey} label={{value: xDataKey, fill: "#000", position: "insideBottom", offset: -5, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}}/>
-            <YAxis width="auto" label={{value: yDataKeys[0], fill: "#000", position: "insideLeft", angle: -90, offset: 0, dy: 100, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}} />
+            <YAxis width="auto" label={{value: yDataKeys[0], fill: "#000", position: "insideLeft", angle: -90, offset: 5, dy: 100, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}} />
             {yDataKeys.length > 1 ? <Legend verticalAlign="top" align="left" /> : <></>}
             {
                 yDataKeys.map((key, idx) => 
@@ -55,9 +55,18 @@ export default function LineGraph({figureSection}: LineGraphProps) {
     const xDataKey = figureSection["xDataName"]
     const yDataKeys = figureSection["yDataNames"]
     const rowData = figureSection["figureRowData"]
+    const figureTitle = figureSection["figureTitle"]
+    const figureNumber = figureSection["figureNumber"]
 
     return (
         <div className="flex flex-col md:items-center w-full overflow-x-auto">
+            {figureNumber && figureTitle ?
+            <h1
+                className="self-start text-lg font-semibold text-left"
+            >
+                Figure {figureNumber}: {figureTitle}
+            </h1> : <></>
+            }
             {xDataKey && yDataKeys && rowData ? 
             <ResponsiveContainer
                 height={350}

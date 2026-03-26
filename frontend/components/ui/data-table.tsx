@@ -35,9 +35,18 @@ export default function DataTable({figureSection}: DataTableProps) {
 
     const columnNames = figureSection["figureColumnNames"]
     const rowData = figureSection["figureRowData"]
+    const figureNumber = figureSection["figureNumber"]
+    const figureTitle = figureSection["figureTitle"]
 
     return (
         <div className="w-full flex flex-col">
+            {figureTitle && figureNumber ?
+            <h1
+                className="text-lg font-semibold text-left"
+            >
+                Figure {figureNumber}: {figureTitle}
+            </h1> : <></>
+            }
             {columnNames && rowData ? createTable(columnNames, rowData) : <></>}
         </div>
     )

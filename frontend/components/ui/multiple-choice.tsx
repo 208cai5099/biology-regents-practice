@@ -52,9 +52,6 @@ export default function MultipleChoiceCard({ question, onSelectAnswer }: Multipl
     return (
         <div
             className={`flex flex-col justify-center border rounded-2xl w-8/10 gap-y-5 p-5 ${isWrong ? " animate-shake" : ""}`}
-            style={{
-                boxShadow: isSubmitted && chosenChoice === question["correctAnswer"] ? `0 0 5px 2px ${CORRECT_ANSWER_SHADOW}` : ""
-            }}
         >
 
             <p className="font-bold">{questionNumber > 0 ? `Question ${questionNumber}: ` : ""}{question["question"]}</p>

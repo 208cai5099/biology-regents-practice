@@ -8,6 +8,7 @@ import type { ReviewMultipleChoiceQuestion, UnitNames } from "../types"
 import MultipleChoiceCard from "@/components/ui/multiple-choice"
 import BlankMultipleChoiceCard from "@/components/ui/blank-multiple-choice"
 import UnitMenu from "../../components/ui/unit-menu"
+import AIDisclaimer from "@/components/ui/ai-disclaimer"
 
 const EMPTY_COUNTS: Record<UnitNames, number> = {
     "Biochemistry": 0,
@@ -110,6 +111,8 @@ export default function ReviewClient() {
 
     return (
         <div className="flex flex-col md:flex-row mt-5 gap-10">
+
+            <AIDisclaimer />
 
             <div className="flex flex-col self-center md:self-start md:ml-10 w-8/10 md:w-1/4">
                 <UnitMenu onSelectUnit={handleSelectUnit} />

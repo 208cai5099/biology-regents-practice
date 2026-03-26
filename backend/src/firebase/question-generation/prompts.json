@@ -59,7 +59,7 @@
 
     "cluster_user_prompt": [
         "<task>\n",
-        "Your job is to create a cluster with 4 to 6 questions about the following phenomenon and standards:\n",
+        "Your job is to create a cluster with 4 to 6 questions about the following phenomenon and standards. Answers MUST be found through critical thinking, not by simply reading the provided texts.\n",
         "Phenomenon: {{phenomenon}}\n",
         "Standards: {{standards_list}}\n\n",
         "Here are the standards and their descriptions:\n",
