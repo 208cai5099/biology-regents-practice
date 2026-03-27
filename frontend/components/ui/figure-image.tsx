@@ -31,7 +31,10 @@ function createImageComponent(imageURL: string, imageAttribution: string, figure
                 }}
             >
             </Image>
-            <a className="self-center text-sm" href={imageURL} target="_blank" rel="noopener noreferrer">Source: {imageAttribution}</a>
+            {imageAttribution.length ? 
+            <a className="self-center text-sm" href={imageURL} target="_blank" rel="noopener noreferrer">Source: {imageAttribution}</a> :
+            <></>
+            }
             </div>
         </div>
     )
@@ -47,7 +50,7 @@ export default function FigureImage({figureSection}: FigureImageProps) {
 
     return (
         <div>
-            {imageURL && imageAttribution ? createImageComponent(imageURL, imageAttribution, figureNumber, figureTitle) : <></>}
+            {imageURL && imageAttribution !== undefined ? createImageComponent(imageURL, imageAttribution, figureNumber, figureTitle) : <></>}
         </div>
     )
 }

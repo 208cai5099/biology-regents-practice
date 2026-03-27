@@ -28,6 +28,8 @@ export default function QuestionMenu({counts, unit, onSelectQuestion, performanc
     return (
         <div className="flex flex-col max-h-[300px] md:max-h-screen w-full overflow-hidden">    
 
+            {counts[unit] ?
+            
             <div className="flex-1 overflow-y-auto">
                 {Array.from({length: counts[unit]}).map((_, idx) => {
                     return (
@@ -61,7 +63,9 @@ export default function QuestionMenu({counts, unit, onSelectQuestion, performanc
                         </button>
                     )
                 })}
-            </div>
+            </div> :
+            <p className="self-center my-5">No questions are available yet</p>
+            }
 
         </div>
     )

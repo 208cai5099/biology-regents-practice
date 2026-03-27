@@ -24,7 +24,7 @@ export default function ConstructedResponse({constructedResponseSection, onSelec
                 className="w-full border border-gray-500 resize-none p-2 focus:outline-none focus:ring-1 focus:ring-deepgreen"
                 rows={10}
                 placeholder="Enter your answer here"
-                onChange={(event) => setCurrentAnswer(event.target.value)}
+                onChange={(event) => setCurrentAnswer(event.target.value.trim())}
                 disabled={isSubmitted}
             />
             <button 

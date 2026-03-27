@@ -28,14 +28,14 @@ export default function AIDisclaimer() {
             ref={ref}
             onClose={closeDisclaimer}
             onKeyDown={(event) => event.key === "Escape" && event.preventDefault()}
-            className="my-auto mx-auto max-w-8/10 md:max-w-1/3 rounded-2xl p-2 bg-white backdrop:bg-black/50 backdrop:backdrop-blur-lg"
+            className="my-auto mx-auto max-w-8/10 md:max-w-1/3 rounded-2xl p-2 bg-white focus:outline-none focus:ring-2 focus:ring-black backdrop:bg-black/50 backdrop:backdrop-blur-sm"
         >
             <div className="flex flex-col gap-2">
 
                 <p className="font-semibold">DISCLAIMER</p>
 
                 <p>
-                    The questions are generated using AI models and may contain mistakes.
+                    All questions on this website are generated using AI models and may contain mistakes.
                     For more information, please visit the <Link href="./about" className="underline">About</Link> page to learn more.
                 </p>
 

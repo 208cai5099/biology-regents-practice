@@ -39,7 +39,7 @@ export default function About() {
                             These are typically easier questions that help students gain sufficient biology knowledge for the cluster questions.
                         </p>
 
-                        <h1 className="text-lg text-gray-500 font-bold">Cluster Questions (Coming Soon)</h1>
+                        <h1 className="text-lg text-gray-500 font-bold">Cluster Questions</h1>
                         <p className="text-lg">
                             Cluster questions are designed to resemble those from the New York State Biology Regents exam. The exam is made up of sections called clusters. Each 
                             cluster is focused on a specific phenomenon in the real-world, and students learn about the phenomenon based on the given reading passages, diagrams, 

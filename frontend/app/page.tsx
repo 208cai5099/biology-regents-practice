@@ -72,19 +72,21 @@ export default function Home() {
             {Object.entries(IMG_PATHS).map(([unit, path], idx) => {
 
               const imageCount = Object.keys(IMG_PATHS).length
-
               const delay = 30 / imageCount * (imageCount - (idx + 1)) * -1
+              const width = 120
+              const height = 120
+              
               return (
                 <div
                     key={idx}
                     className="absolute rounded-md marquee-animate text-center font-semibold"
-                    style={{animationDelay: `${delay}s`, width: "100px", height: "100px"}}
+                    style={{animationDelay: `${delay}s`, width: `${width}px`, height: `${height}px`}}
                 >
                   <h3>{unit}</h3>
                   <Image
                     src={path}
-                    width={100}
-                    height={100}
+                    width={width}
+                    height={height}
                     alt={`image of ${path.replace(".svg", "")}`}
                   >
                   </Image>

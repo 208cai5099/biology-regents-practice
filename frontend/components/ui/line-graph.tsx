@@ -13,7 +13,7 @@ interface LineGraphProps {
     figureSection: ClusterFigure
 }
 
-function createLineGraph(xDataKey: string, yDataKeys: string[], rowData: Record<string, Record<string, string | number>>) {
+function createLineGraph(xAxisTitle: string, yAxisTitle: string, xDataKey: string, yDataKeys: string[], rowData: Record<string, Record<string, string | number>>) {
 
     const graphData = Object.entries(rowData).map(([_, rowValues]) => {
 
@@ -36,8 +36,8 @@ function createLineGraph(xDataKey: string, yDataKeys: string[], rowData: Record<
             data={graphData}
         >
           <CartesianGrid strokeDasharray="10 10" />
-            <XAxis dataKey={xDataKey} label={{value: xDataKey, fill: "#000", position: "insideBottom", offset: -5, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}}/>
-            <YAxis width="auto" label={{value: yDataKeys[0], fill: "#000", position: "insideLeft", angle: -90, offset: 5, dy: 100, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}} />
+            <XAxis dataKey={xDataKey} label={{value: xAxisTitle, fill: "#000", position: "insideBottom", offset: -5, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}}/>
+            <YAxis width="auto" domain={["auto", "auto"]} label={{value: yAxisTitle, fill: "#000", position: "insideLeft", angle: -90, offset: 5, dy: 100, fontSize: TICK_FONT_SIZE, fontWeight: "bold"}} tick={{fill: "#000", fontSize: TICK_FONT_SIZE}} />
             {yDataKeys.length > 1 ? <Legend verticalAlign="top" align="left" /> : <></>}
             {
                 yDataKeys.map((key, idx) => 
@@ -47,13 +47,14 @@ function createLineGraph(xDataKey: string, yDataKeys: string[], rowData: Record<
         </LineChart>
     )
 
-
 }
 
 export default function LineGraph({figureSection}: LineGraphProps) {
 
     const xDataKey = figureSection["xDataName"]
     const yDataKeys = figureSection["yDataNames"]
+    const xAxisTitle = figureSection["xAxisTitle"]
+    const yAxisTitle = figureSection["yAxisTitle"]
     const rowData = figureSection["figureRowData"]
     const figureTitle = figureSection["figureTitle"]
     const figureNumber = figureSection["figureNumber"]
@@ -67,12 +68,12 @@ export default function LineGraph({figureSection}: LineGraphProps) {
                 Figure {figureNumber}: {figureTitle}
             </h1> : <></>
             }
-            {xDataKey && yDataKeys && rowData ? 
+            {xAxisTitle && yAxisTitle && xDataKey && yDataKeys && rowData ? 
             <ResponsiveContainer
                 height={350}
                 aspect={2}
             >
-                {createLineGraph(xDataKey, yDataKeys, rowData)}
+                {createLineGraph(xAxisTitle, yAxisTitle, xDataKey, yDataKeys, rowData)}
             </ResponsiveContainer> : <></>}
         </div>
     )

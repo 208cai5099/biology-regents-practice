@@ -50,7 +50,9 @@ export interface ClusterFigure {
   xDataName?: string,
   yDataNames?: string[],
   imageURL?: string,
-  imageAttribution?: string
+  imageAttribution?: string,
+  xAxisTitle?: string,
+  yAxisTitle?: string
 }
 
 export type ClusterSectionObject = ClusterTitle | ClusterText | ClusterMultipleChoiceQuestion | ClusterConstructedResponse | ClusterFigure
