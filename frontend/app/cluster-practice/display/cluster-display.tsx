@@ -15,7 +15,6 @@ export default function ClusterDisplay({cluster, recordAnswers}: ClusterDisplayP
 
     return (
         <div className="relative flex flex-col w-full gap-5">
-            <div className="fixed inset-0" onClick={() => setShowInfo(false)}></div>
             <span 
                 className="absolute top-[-20] right-2 md:top-2 md:right-5 cursor-pointer bg-black rounded-full"
                 onClick={() => setShowInfo(true)}
