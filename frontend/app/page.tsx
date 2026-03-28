@@ -2,35 +2,18 @@
 
 import Footer from "@/components/ui/footer";
 import { NavBar } from "@/components/ui/navbar";
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef} from "react";
 import MultipleChoiceCard from "@/components/ui/multiple-choice";
-import Image from "next/image"
-import { ReviewMultipleChoiceQuestion } from "./types";
 import Link from "next/link";
-
-const SAMPLE_QUESTION: ReviewMultipleChoiceQuestion = {
-  unitName: "Biochemistry",
-  questionNumber: 1,
-  question: "Which equation correctly models the process of photosynthesis?",
-  correctAnswer: "Sunlight + Water + Carbon Dioxide -> Glucose + Oxygen",
-  wrongChoices: [
-    "Glucose + Oxygen -> Sunlight + Water + Carbon Dioxide",
-    "Sunlight + Carbon Dioxide -> Glucose + Oxygen",
-    "Sunlight + Water + Oxygen -> Glucose + Carbon Dioxide"
-  ]
-}
-
-const IMG_PATHS = {
-    "Biochemistry": "test_tube.svg",
-    "Ecology": "clover.svg",
-    "Evolution": "bird.svg",
-    "Genetics": "dna.svg",
-    "Homeostasis": "person.svg",
-    "Reproduction": "baby.svg",
-    "Carbon Cycle":"cycle.svg"
-}
+import { firebaseApp, sampleQuestions } from "@/lib/utils";
+import { getFirestore, getDocs, collection } from "firebase/firestore"
+import Carousel from "@/components/ui/carousel";
+import IntroCard from "@/components/ui/intro-card";
+import { unitDescriptions, adviceDescriptions } from "@/lib/utils";
 
 export default function Home() {
+
+  const [examDates, setExamDates] = useState<string[]>([])
 
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -57,59 +40,120 @@ export default function Home() {
     return () => observer.disconnect()
   }, [])
 
+  useEffect(() => {
+
+    const queryExamDates = async() => {
+      const db = getFirestore(firebaseApp)
+      const datesSnapshot = await getDocs(collection(db, "exam_schedule"))
+      
+      const dates: Record<"date", string>[] = []
+      datesSnapshot.forEach((doc) => dates.push(doc.data() as Record<"date", string>))
+
+      setExamDates(dates.map((obj) => obj["date"]))
+
+    }
+
+    queryExamDates()
+
+  }, [])
+
   return (
     <div className="flex flex-col min-h-screen overflow-hidden bg-wallpaper">
       <NavBar />
-      <div className="flex flex-col flex-1 items-center mt-5 gap-5">
 
-        <div className="flex flex-col text-center gap-3">
-          <h1 className="text-4xl font-semibold">Master biology,</h1>
-          <h1 className="text-4xl font-semibold">one question at a time</h1>
-          <h2 className="text-2xl">Prepare for the NYS Biology Regents exam</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 mt-10">
+        
+        <div className="mx-auto my-auto text-center md:text-start">
+          <p className="self-center w-fit border border-gray-500 rounded-full px-2 mx-auto md:mx-0">
+            NYS Biology Regents Prep
+          </p>
+
+          <div className="mt-5">
+            <h1 className="text-4xl md:text-6xl font-semibold">Master <strong className="text-deepgreen">biology</strong>,</h1>
+            <h1 className="text-4xl md:text-6xl font-semibold">one question at a time</h1>
+          </div>
+
+          <p className="text-lg md:text-xl mt-5">Get ready for the NYS Biology Regents exam </p>
+
+          <div className="flex flex-row md:text-xl gap-10 mt-5 justify-center md:justify-start">
+            <Link
+              className="inline-block border border-gray-300 hover:shadow-sm hover:bg-brightgreen/90 active:bg-deepgreen/90 rounded-xl p-2 transition hover:-translate-y-1"
+              href="#steps"
+            >
+              Start Studying
+            </Link>
+            <Link
+              className="inline-block border border-gray-300 hover:shadow-sm hover:bg-brightgreen/90 active:bg-deepgreen/90 rounded-xl p-2 transition hover:-translate-y-1"
+              href="/about"
+            >
+              Learn More
+            </Link>
+          </div>
         </div>
 
-        <div className="w-full max-w-9/10 relative h-[150px] overflow-hidden mt-5 mask-l-from-97% mask-l-to-100% mask-r-from-97% mask-r-to-100%">
-            {Object.entries(IMG_PATHS).map(([unit, path], idx) => {
-
-              const imageCount = Object.keys(IMG_PATHS).length
-              const delay = 30 / imageCount * (imageCount - (idx + 1)) * -1
-              const width = 120
-              const height = 120
-              
-              return (
-                <div
-                    key={idx}
-                    className="absolute rounded-md marquee-animate text-center font-semibold"
-                    style={{animationDelay: `${delay}s`, width: `${width}px`, height: `${height}px`}}
-                >
-                  <h3>{unit}</h3>
-                  <Image
-                    src={path}
-                    width={width}
-                    height={height}
-                    alt={`image of ${path.replace(".svg", "")}`}
-                  >
-                  </Image>
-                </div>
-              )
-            }
-            )}
+        <div className="mx-auto my-auto w-full mt-10 md:mt-0">
+          <Carousel slides={sampleQuestions.map((question) => <MultipleChoiceCard question={question} onSelectAnswer={(chosenAnswer) => {}}/>)} />
         </div>
 
-        <Link href="/practice" className="w-[200px] max-h-[30px] border border-gray-300 text-lg text-center font-semibold rounded-xl bg-wallpaper hover:bg-deepgreen hover:text-white active:bg-green-800">
-            Start Studying
-        </Link>
+      </div>
 
-        <p className="text-lg font-bold mt-10">
-          Here's a sample question
-        </p>
+      <div
+        id="steps"
+        ref={containerRef}
+        className="mt-10 md:ml-30"
+      >
+        <h1 className="text-2xl font-bold text-center md:text-start mb-5">1. Pick Your Own Path</h1>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
 
-        <div className="w-full md:w-1/2 flex justify-center">
-          <MultipleChoiceCard question={SAMPLE_QUESTION} onSelectAnswer={(chosenAnswer: string) => {}}/>
+          <div className="slide-in-left w-8/10 md:3/10 mx-auto md:mx-0">
+            <IntroCard heading="General Review" description="Refresh essential biology knowledge" />
+          </div>
+
+          <div className="slide-in-right w-8/10 md:3/10 mx-auto md:mx-0">
+            <IntroCard heading="Cluster Practice" description="Solve mock exam questions" />
+          </div>
+
         </div>
 
+        <h1 className="text-2xl font-bold text-center md:text-start mb-5">2. Pick a Topic</h1>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 text-center md:text-start gap-5 mb-10">
+          {Object.entries(unitDescriptions).map(([unit, unitDescription], index) => {
+
+            const slideClass = index % 2 === 0 ? "slide-in-left" : "slide-in-right"
+
+            return (
+              <div 
+                key={`${unit} card`} 
+                className={`flex ${slideClass} w-8/10 md:3/10 mx-auto md:mx-0`}
+              >
+                <IntroCard heading={unit} description={unitDescription}/>
+              </div>
+            )
+          })}
+        
+        </div>
+        
+        <h1 className="text-2xl font-bold text-center md:text-start mb-5">3. Solve the Questions</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 text-center md:text-start gap-5 mb-10">
+          {Object.entries(adviceDescriptions).map(([advice, adviceDescription], index) => {
+
+            const slideClass = index % 2 === 0 ? "slide-in-left" : "slide-in-right"
+
+            return (
+              <div 
+                key={`${advice} card`} 
+                className={`flex ${slideClass} w-8/10 md:3/10 mx-auto md:mx-0`}
+              >
+                <IntroCard heading={advice} description={adviceDescription}/>
+              </div>
+            )
+          })}
+        
+        </div>
+        
       </div>
 
       <Footer />

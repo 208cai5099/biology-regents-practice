@@ -9,7 +9,7 @@ export default function About() {
 
             <div className="flex flex-col items-center m-5 gap-5">
 
-                <div className="flex flex-rowfont-bold">
+                <div className="flex flex-row font-bold">
                     <h1 className="text-3xl">Welcome to Buddin</h1>
                     <h1 className="text-3xl text-deepgreen">Bio!</h1>
                 </div>

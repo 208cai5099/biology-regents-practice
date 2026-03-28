@@ -14,14 +14,14 @@ function NavBar() {
                     className="flex flex-row text-[25px] font-bold ml-5"
                 >
                     <p>Buddin</p>
-                    <p className="text-deepgreen">Bio</p>
+                    <p className="text-brightgreen">Bio</p>
                 </Link>
 
             <div className="flex flex-row gap-5 mr-3">
 
                 <div className="relative">
                     <button
-                        className="group text-lg font-bold cursor-pointer text-white hover:text-deepgreen"
+                        className="group text-lg font-bold cursor-pointer text-white hover:text-brightgreen"
                         onClick={() => setShowStudyMenu(!showStudyMenu)}
                     >
                         Study
@@ -32,11 +32,11 @@ function NavBar() {
                         <>
                         <div className="fixed inset-0" onClick={() => setShowStudyMenu(false)} />
                         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 flex flex-col bg-black rounded shadow-lg">
-                            <button className="group/review relative px-4 py-2 text-lg font-bold cursor-pointer text-white hover:text-deepgreen">
+                            <button className="group/review relative px-4 py-2 text-lg font-bold cursor-pointer text-white hover:text-brightgreen">
                                 <Link href="/review-practice">Review</Link>
                                 <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-current transition-all duration-300 group-hover/review:w-3/4"/>
                             </button>
-                            <button className="group/cluster relative px-4 py-2 text-lg font-bold cursor-pointer text-white hover:text-deepgreen">
+                            <button className="group/cluster relative px-4 py-2 text-lg font-bold cursor-pointer text-white hover:text-brightgreen">
                                 <Link href="/cluster-practice">Cluster</Link>
                                 <span className="absolute bottom-1 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-current transition-all duration-300 group-hover/cluster:w-3/4"/>
                             </button>
@@ -45,7 +45,7 @@ function NavBar() {
                     )}
                 </div>
 
-                <button className="group text-lg font-bold text-white hover:text-deepgreen">
+                <button className="group text-lg font-bold text-white hover:text-brightgreen">
                     <Link href="/about" className="relative">
                         About
                         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-0 bg-current transition-all duration-300 group-hover:w-full"/>
