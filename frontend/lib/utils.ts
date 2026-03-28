@@ -105,4 +105,26 @@ const unitDescriptions: Record<UnitNames, string> = {
   "The Carbon Cycle": "The flow of carbon among the biosphere, atmosphere, geosphere, and hydrosphere"
 }
 
-export { firebaseApp, sampleQuestions, unitDescriptions }
+const adviceDescriptions: Record<string, string> = {
+  "Quality Over Quantity": "Focus on learning from the questions, not just doing them",
+  "Time Yourself": "Time yourself with the questions and track your progress",
+  "Phone-Friendly": "Practice on your phone - no need for laptop or computer",
+  "Review, Reinforce, Repeat": "Practice again and again until mastery "
+}
+
+const introImagePaths: Record<string, string> = {
+  "Biochemistry": "test_tube.svg",
+  "Ecology and Human Impacts on Ecosystems": "clover.svg",
+  "Evolution": "bird.svg",
+  "Genetics": "dna.svg",
+  "Organism Organization and Homeostasis": "person.svg",
+  "Reproduction": "baby.svg",
+  "The Carbon Cycle": "cycle.svg",
+  "General Review": "think.svg",
+  "Cluster Practice": "exam.svg",
+  "Phone-Friendly": "phone.svg",
+  "Time Yourself": "hourglass.svg",
+  "Quality Over Quantity": "brain.svg",
+  "Review, Reinforce, Repeat": "repeat.svg"
+}
+export { firebaseApp, sampleQuestions, unitDescriptions, adviceDescriptions, introImagePaths }
